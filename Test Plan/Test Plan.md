@@ -177,7 +177,6 @@ Unit yang diuji:
 |---|---|
 | Google Chrome | Menjalankan Manual Testing |
 | Visual Studio Code | Membaca source code untuk White-box Testing |
-| draw.io atau Graphviz | Menggambar flowchart dan flow graph |
 | Snipping Tool / tangkapan layar | Mengambil bukti pengujian |
 | Microsoft Excel | Menyusun Test Case dan mencatat hasil eksekusi |
 | GitHub | Menyimpan dokumentasi pengujian |
@@ -205,7 +204,7 @@ Ketiga anggota berperan sebagai tester. Defect yang ditemukan dilaporkan ke peng
 | **Tahapan** | **Aktivitas** | **Pelaksanaan** |
 | ----------- | ------------- | --------------- |
 | 1 | Penyusunan System Overview, Use Case, dan Flowchart | Minggu 1 |
-| 2 | Penyusunan Test Plan | Minggu 1 |
+| 2 | Penyusunan Test Plan | Minggu 2 |
 | 3 | Penyusunan Test Scenario | Minggu 2 |
 | 4 | Penyusunan Test Case (Black-box dan White-box) | Minggu 2 |
 | 5 | Pelaksanaan Manual Testing (Black-box) | Minggu 3 |
@@ -213,7 +212,6 @@ Ketiga anggota berperan sebagai tester. Defect yang ditemukan dilaporkan ke peng
 | 7 | Pelaporan defect dan pengujian ulang (retest) | Minggu 3 |
 | 8 | Analisis hasil dan penyusunan Test Report | Minggu 4 |
 
-Tanggal pasti tiap minggu: [ISI].
 
 ### 11. Entry and Exit Criteria
 
