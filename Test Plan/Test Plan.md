@@ -6,7 +6,6 @@
 |---|---|
 | ID Dokumen | TP-PPDB-01 |
 | Versi | 0.1 (draft) |
-| Tanggal | [ISI] |
 | Disusun oleh | Kelompok 5 – 07TPLE002 |
 
 ### 1. Pendahuluan
@@ -15,7 +14,10 @@ Dokumen Test Plan ini menjadi pedoman pelaksanaan pengujian pada website PPDB SL
 
 Pengujian mencakup pengujian fungsional secara manual (Black-box) dan pengujian alur logika program (White-box) pada fungsi inti fitur utama.
 
-Standar acuan yang dipakai adalah ISO/IEC/IEEE 29119-5:2024, yaitu bagian kelima dari rangkaian standar pengujian perangkat lunak ISO/IEC/IEEE 29119 yang membahas *keyword-driven testing*. Inti pendekatannya ada pada cara menulis test case: aksi pengujian yang berulang diberi nama baku beserta parameternya, lalu test case disusun dari rangkaian nama aksi itu. Nama yang dipilih mengikuti istilah pengguna sistem, bukan nama elemen halaman, sehingga prosedurnya tidak perlu ditulis ulang setiap kali tata letak halaman berubah. Pasal 5.1 standar tersebut menyatakan pendekatan ini tetap dapat dipakai walaupun automasi tidak direncanakan, dan hal itulah yang menjadi dasar pelaksanaan pengujian manual pada proyek ini. Penyebutan standar di sini bersifat acuan penyusunan dokumen, bukan klaim pemenuhan persyaratan kesesuaian (*conformance*) pada Pasal 7 yang memang ditujukan bagi penyedia kerangka kerja pengujian.
+Standar acuan yang dipakai adalah ISO/IEC/IEEE 29119-5:2024
+yaitu bagian kelima dari rangkaian standar pengujian perangkat lunak ISO/IEC/IEEE 29119 yang membahas *keyword-driven testing*.
+Inti pendekatannya ada pada cara menulis test case: aksi pengujian yang berulang diberi nama baku beserta parameternya, lalu test case disusun dari rangkaian nama aksi itu.
+Nama yang dipilih mengikuti istilah pengguna sistem, bukan nama elemen halaman, sehingga prosedurnya tidak perlu ditulis ulang setiap kali tata letak halaman berubah. Pasal 5.1 standar tersebut menyatakan pendekatan ini tetap dapat dipakai walaupun automasi tidak direncanakan, dan hal itulah yang menjadi dasar pelaksanaan pengujian manual pada proyek ini. Penyebutan standar di sini bersifat acuan penyusunan dokumen, bukan klaim pemenuhan persyaratan kesesuaian (*conformance*) pada Pasal 7 yang memang ditujukan bagi penyedia kerangka kerja pengujian.
 
 ### 2. Test Objectives
 
