@@ -1,0 +1,26 @@
+digraph F {
+  graph [rankdir=TB, splines=spline, nodesep=0.7, ranksep=0.45, fontname="Helvetica", label="FLOWCHART REGISTRASI AKUN", labelloc=t, labeljust=l, fontsize=16, pad=0.4, bgcolor="white"];
+  node [fontname="Helvetica", fontsize=12, penwidth=1.3];
+  edge [fontname="Helvetica", fontsize=11, color="#222222", arrowsize=0.8];
+  s [shape=ellipse, style=filled, fillcolor="#d5e8d4", color="#82b366", width=1.6, height=0.6, label="Mulai"];
+  r0 [shape=box, style=filled, fillcolor="#dae8fc", color="#6c8ebf", width=2.6, height=0.6, label="Buka halaman Buat Akun Baru"];
+  r1 [shape=parallelogram, style=filled, fillcolor="#fff2cc", color="#d6b656", width=2.6, height=0.6, label="Isi nama, email, no. HP,\npassword & konfirmasi"];
+  r2 [shape=diamond, style=filled, fillcolor="#f8cecc", color="#b85450", width=3.0, height=1.1, label="Data lengkap, password\n≥ 6 & cocok, syarat\ndicentang?"];
+  r3 [shape=box, style=filled, fillcolor="#dae8fc", color="#6c8ebf", width=2.6, height=0.6, label="Klik Daftar Sekarang"];
+  r4 [shape=diamond, style=filled, fillcolor="#f8cecc", color="#b85450", width=3.0, height=1.1, label="Email sudah\nterdaftar?"];
+  r5 [shape=box, style=filled, fillcolor="#dae8fc", color="#6c8ebf", width=2.6, height=0.6, label="Akun disimpan (belum aktif)\n& email aktivasi dikirim"];
+  r6 [shape=box, style=filled, fillcolor="#dae8fc", color="#6c8ebf", width=2.6, height=0.6, label="Klik link aktivasi di email"];
+  r7 [shape=box, style=filled, fillcolor="#dae8fc", color="#6c8ebf", width=2.6, height=0.6, label="Akun aktif, diarahkan\nke halaman Login"];
+  e [shape=ellipse, style=filled, fillcolor="#d5e8d4", color="#82b366", width=1.6, height=0.6, label="Selesai"];
+  s -> r0 [];
+  r0 -> r1 [];
+  r1 -> r2 [];
+  r2 -> r1 [label="Tidak", fontcolor="#c62828", fontname="Helvetica-Bold", constraint=false, tailport=e, headport=e];
+  r2 -> r3 [label="Ya", fontcolor="#1a7f37", fontname="Helvetica-Bold"];
+  r3 -> r4 [];
+  r4 -> r1 [label="Ya", fontcolor="#1a7f37", fontname="Helvetica-Bold", constraint=false, tailport=e, headport=e];
+  r4 -> r5 [label="Tidak", fontcolor="#c62828", fontname="Helvetica-Bold"];
+  r5 -> r6 [];
+  r6 -> r7 [];
+  r7 -> e [];
+}
