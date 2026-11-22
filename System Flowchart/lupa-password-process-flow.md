@@ -17,7 +17,3 @@ Berikut merupakan flowchart proses lupa password dan reset password pada website
 7. Sistem memeriksa apakah token masih valid, password minimal 6 karakter, dan konfirmasi cocok. Jika tidak, muncul pesan kesalahan dan pengguna kembali mengisi password baru.
 8. Jika valid, password diperbarui.
 9. Pengguna login dengan password baru dan proses selesai.
-
-## Sumber Diagram
-
-Gambar dibuat dengan Graphviz dari [`source/Lupa_Password_flowchart.dot`](source/Lupa_Password_flowchart.dot).
