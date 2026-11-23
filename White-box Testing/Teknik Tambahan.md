@@ -14,7 +14,19 @@ Statement Coverage = simpul yang dilalui / seluruh simpul x 100%. Branch Coverag
 | WB-04 | 26 dari 26 | 100,0% | 16 dari 18 | 88,9% |
 | WB-05 | 18 dari 21 | 85,7% | 12 dari 16 | 75,0% |
 
-Ini angka rencana. Setelah pengujian dijalankan, angka aktual dihitung ulang dari jalur yang benar-benar berstatus Pass, dan disalin ke Test Report.
+Tabel di atas adalah angka rencana. Angka aktual dihitung dari jalur yang sudah dijalankan.
+
+**Angka aktual sementara (putaran 1, 24 November 2026)**
+
+| Unit | Jalur yang dihitung | Simpul dilalui | Statement Coverage | Cabang dilalui | Branch Coverage |
+|---|---|---|---|---|---|
+| WB-01 | J1, J2, J3, J4, J5, J6, J8 | 19 dari 20 | 95,0% | 15 dari 16 | 93,8% |
+| WB-02 | J1, J2, J4 | 15 dari 21 | 71,4% | 10 dari 16 | 62,5% |
+| WB-03 | J1, J3 | 17 dari 25 | 68,0% | 12 dari 22 | 54,5% |
+| WB-04 | J1, J4, J7 | 22 dari 26 | 84,6% | 11 dari 18 | 61,1% |
+| WB-05 | J1, J2, J7 | 16 dari 21 | 76,2% | 9 dari 16 | 56,2% |
+
+Angka WB-01 belum memuat J3 dan J5 (menunggu konfirmasi), jadi masih bisa naik. Angka ini akan dihitung ulang setelah jalur sisa dijalankan, lalu disalin ke Test Report.
 
 Simpul yang tidak tercakup, dan alasannya:
 

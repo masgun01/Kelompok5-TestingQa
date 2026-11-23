@@ -50,27 +50,27 @@ V(G) = **9**, jadi himpunan jalur independen berisi 9 jalur.
 | Jalur | Rangkaian simpul | Skenario dan data uji | Hasil diharapkan | Cara | Keterangan |
 |---|---|---|---|---|---|
 | WB-01-J1 | 1 - 20 | Buka halaman login tanpa mengirim form (method GET). | Form login tampil. | UI |  |
-| WB-01-J2 | 1 - 2 - 3 - 19 - 20 | Login dengan email yang belum terdaftar. Email: tidakada@contoh.com, password bebas. | Pesan 'Email atau password salah!'. | UI | Sama dengan TC-AU-20. |
-| WB-01-J3 | 1 - 2 - 3 - 4 - 5 - 6 - 9 - 10 - 11 - 12 - 14 - 16 - 20 | Login akun user aktif, kotak 'Ingat saya' tidak dicentang. | Masuk ke Beranda user. | UI | Sama dengan TC-AU-17. |
+| WB-01-J2 | Login dengan email yang belum terdaftar menampilkan 'Email atau password salah!'. | Pass | Bukti/WB-01-J2.png |
+| WB-01-J3 | Login user tanpa mencentang Ingat saya berhasil dan masuk ke user/dashboard.php. | Pass | Bukti/WB-01-J3-a-form-tanpa-ingat-saya.png, WB-01-J3.png |
 | WB-01-J4 | 1 - 2 - 3 - 4 - 5 - 6 - 9 - 10 - 11 - 12 - 14 - 15 - 20 | Login akun admin, 'Ingat saya' tidak dicentang. | Masuk ke Dashboard Admin. | UI | Sama dengan TC-AU-18. |
-| WB-01-J5 | 1 - 2 - 3 - 4 - 5 - 6 - 9 - 10 - 11 - 12 - 13 - 14 - 16 - 20 | Login akun user aktif, kotak 'Ingat saya' dicentang. | Masuk ke Beranda user dan cookie user_email terbentuk (cek DevTools, tab Application, Cookies). | UI |  |
+| WB-01-J5 | Pada kunjungan berikutnya halaman login menampilkan email terisi otomatis dan kotak Ingat saya tercentang, tanda cookie user_email dibuat saat login sebelumnya dengan Ingat saya. Bukti tidak langsung. | Pass | Bukti/WB-01-J8.png, WB-01-J4-a-form-admin.png |
 | WB-01-J6 | 1 - 2 - 3 - 4 - 5 - 6 - 9 - 10 - 17 - 20 | Login akun user yang belum aktif dengan password benar. | Pesan 'Akun belum diaktifasi. Silakan cek email Anda.' | UI | Sama dengan TC-AU-22. |
 | WB-01-J7 | 1 - 2 - 3 - 4 - 5 - 7 - 8 - 9 - 10 - 11 - 12 - 14 - 16 - 20 | Login dengan akun yang password-nya disimpan sebagai hash password_hash (bukan MD5). | Login berhasil lewat cabang password_verify. | Tidak dijalankan | Semua akun dibuat lewat registrasi dan memakai MD5. Membuat hash lain berarti mengubah database produksi. |
-| WB-01-J8 | 1 - 2 - 3 - 4 - 5 - 7 - 9 - 18 - 20 | Login akun terdaftar dengan password salah. | Pesan 'Email atau password salah!'. | UI | Sama dengan TC-AU-19. |
+| WB-01-J8 | Login dengan email terdaftar dan password salah menampilkan 'Email atau password salah!' dan tetap di halaman login. | Pass | Bukti/WB-01-J8.png |
 | WB-01-J9 | 1 - 2 - 3 - 4 - 5 - 6 - 9 - 18 - 20 | MD5 cocok tetapi valid tetap false. | - | Tidak mungkin | Setelah MD5 cocok, valid selalu diisi true. Jalur ini ada di graph tetapi tidak bisa terjadi. |
 
 **Hasil pelaksanaan**
 
 | Jalur | Hasil aktual | Status | Bukti |
 |---|---|---|---|
-| WB-01-J1 |  |  | Bukti/WB-01-J1.png |
-| WB-01-J2 |  |  | Bukti/WB-01-J2.png |
-| WB-01-J3 |  |  | Bukti/WB-01-J3.png |
-| WB-01-J4 |  |  | Bukti/WB-01-J4.png |
-| WB-01-J5 |  |  | Bukti/WB-01-J5.png |
-| WB-01-J6 |  |  | Bukti/WB-01-J6.png |
+| WB-01-J1 | Form login tampil. | Pass | Bukti/WB-01-J1.png |
+| WB-01-J2 | Login dengan email yang belum terdaftar menampilkan 'Email atau password salah!'. | Pass | Bukti/WB-01-J2.png |
+| WB-01-J3 | Login user tanpa mencentang Ingat saya berhasil dan masuk ke user/dashboard.php. | Pass | Bukti/WB-01-J3-a-form-tanpa-ingat-saya.png, WB-01-J3.png |
+| WB-01-J4 | Login admin berhasil dan masuk ke admin/dashboard.php. | Pass | Bukti/WB-01-J4-a-form-admin.png, WB-01-J4.png |
+| WB-01-J5 | Pada kunjungan berikutnya halaman login menampilkan email terisi otomatis dan kotak Ingat saya tercentang, tanda cookie user_email dibuat saat login sebelumnya dengan Ingat saya. Bukti tidak langsung. | Pass | Bukti/WB-01-J8.png, WB-01-J4-a-form-admin.png |
+| WB-01-J6 | Pesan 'Akun belum diaktifasi. Silakan cek email Anda.' tampil. Banner hijau 'Registrasi berhasil!' ikut tampil karena URL masih memuat registered=success (temuan T-1). | Pass | Bukti/WB-01-J6.png |
 | WB-01-J7 | Tidak dijalankan | - | - |
-| WB-01-J8 |  |  | Bukti/WB-01-J8.png |
+| WB-01-J8 | Login dengan email terdaftar dan password salah menampilkan 'Email atau password salah!' dan tetap di halaman login. | Pass | Bukti/WB-01-J8.png |
 | WB-01-J9 | Tidak mungkin | - | - |
 
 ## WB-02 - Pemeriksaan registrasi
@@ -97,7 +97,7 @@ V(G) = **9**, jadi himpunan jalur independen berisi 9 jalur.
 |---|---|---|---|---|---|
 | WB-02-J1 | 1 - 21 | Buka halaman registrasi tanpa mengirim form. | Form registrasi tampil. | UI |  |
 | WB-02-J2 | 1 - 2 - 3 - 5 - 7 - 8 - 9 - 11 - 13 - 14 - 15 - 17 - 18 - 21 | Registrasi user dengan data valid. | Akun dibuat, email aktivasi dikirim, pesan 'Registrasi berhasil!'. | UI | Sama dengan TC-AU-01. |
-| WB-02-J3 | 1 - 2 - 3 - 4 - 21 | Kirim form dengan nama lengkap kosong. Di DevTools hapus atribut required pada kolom nama dan disabled pada tombol, lalu klik Daftar. | Pesan 'Semua field harus diisi!' dan tidak ada akun baru. | DevTools | Cek tambahan: ulangi dengan password kosong (lihat temuan W-2). |
+| WB-02-J3 | Form dengan nama kosong tidak bisa dikirim karena tombol Daftar nonaktif (pemeriksaan di browser). Pemeriksaan di server belum diuji, jadi jalur ini belum dihitung. | Belum dijalankan | Bukti/WB-02-J3-ui-tombol-nonaktif.png |
 | WB-02-J4 | 1 - 2 - 3 - 5 - 7 - 8 - 9 - 10 - 21 | Registrasi dengan email yang sudah terdaftar. | Pesan 'Email sudah terdaftar!'. | UI | Sama dengan TC-AU-02. |
 | WB-02-J5 | 1 - 2 - 3 - 5 - 7 - 8 - 9 - 11 - 13 - 14 - 20 - 21 | INSERT ke tabel users gagal. | Pesan 'Registrasi gagal: ...'. | Tidak dijalankan | Butuh error database. Tidak dipaksakan di sistem produksi. |
 | WB-02-J6 | 1 - 2 - 3 - 5 - 7 - 8 - 9 - 11 - 13 - 14 - 15 - 17 - 19 - 21 | Registrasi berhasil tetapi email aktivasi gagal terkirim. | Pesan 'Registrasi berhasil, tetapi gagal mengirim email...'. | Tidak dijalankan | Butuh SMTP gagal. Catat saja jika terjadi sendiri saat J2. |
@@ -109,10 +109,10 @@ V(G) = **9**, jadi himpunan jalur independen berisi 9 jalur.
 
 | Jalur | Hasil aktual | Status | Bukti |
 |---|---|---|---|
-| WB-02-J1 |  |  | Bukti/WB-02-J1.png |
-| WB-02-J2 |  |  | Bukti/WB-02-J2.png |
-| WB-02-J3 |  |  | Bukti/WB-02-J3.png |
-| WB-02-J4 |  |  | Bukti/WB-02-J4.png |
+| WB-02-J1 | Form registrasi tampil. | Pass | Bukti/WB-02-J1.png |
+| WB-02-J2 | Alert 'Registrasi berhasil! Silakan cek email Anda untuk aktivasi.' tampil. | Pass | Bukti/WB-02-J2.png |
+| WB-02-J3 | Form dengan nama kosong tidak bisa dikirim karena tombol Daftar nonaktif (pemeriksaan di browser). Pemeriksaan di server belum diuji, jadi jalur ini belum dihitung. | Belum dijalankan | Bukti/WB-02-J3-ui-tombol-nonaktif.png |
+| WB-02-J4 | Pesan 'Email sudah terdaftar!' tampil. | Pass | Bukti/WB-02-J4.png |
 | WB-02-J5 | Tidak dijalankan | - | - |
 | WB-02-J6 | Tidak dijalankan | - | - |
 | WB-02-J7 | Tidak mungkin | - | - |
@@ -158,14 +158,14 @@ V(G) = **12**, jadi himpunan jalur independen berisi 12 jalur.
 
 | Jalur | Hasil aktual | Status | Bukti |
 |---|---|---|---|
-| WB-03-J1 |  |  | Bukti/WB-03-J1.png |
-| WB-03-J2 |  |  | Bukti/WB-03-J2.png |
-| WB-03-J3 |  |  | Bukti/WB-03-J3.png |
+| WB-03-J1 | Halaman Upload Berkas tampil dengan 0 dari 4 berkas. | Pass | Bukti/WB-03-J1.png |
+| WB-03-J2 | Belum dijalankan. | Belum dijalankan | Bukti/WB-03-J2.png |
+| WB-03-J3 | Setelah unggah pertama, Foto Siswa berstatus Menunggu Verifikasi dan jumlah berkas menjadi 1 dari 4. Pesan 'File berhasil diupload.' belum tertangkap. | Pass | Bukti/WB-03-J3.png |
 | WB-03-J4 | Tidak dijalankan | - | - |
-| WB-03-J5 |  |  | Bukti/WB-03-J5.png |
-| WB-03-J6 |  |  | Bukti/WB-03-J6.png |
-| WB-03-J7 |  |  | Bukti/WB-03-J7.png |
-| WB-03-J8 |  |  | Bukti/WB-03-J8.png |
+| WB-03-J5 | Belum dijalankan. Percobaan pertama salah mengubah nama atribut, bukan nilainya, jadi hasilnya tidak dipakai. | Belum dijalankan | Bukti/WB-03-J5.png |
+| WB-03-J6 | Belum dijalankan. | Belum dijalankan | Bukti/WB-03-J6.png |
+| WB-03-J7 | Belum dijalankan. | Belum dijalankan | Bukti/WB-03-J7.png |
+| WB-03-J8 | Belum dijalankan. | Belum dijalankan | Bukti/WB-03-J8.png |
 | WB-03-J9 | Tidak dijalankan | - | - |
 | WB-03-J10 | Tidak dijalankan | - | - |
 | WB-03-J11 | Tidak mungkin | - | - |
@@ -208,16 +208,16 @@ V(G) = **10**, jadi himpunan jalur independen berisi 10 jalur.
 
 | Jalur | Hasil aktual | Status | Bukti |
 |---|---|---|---|
-| WB-04-J1 |  |  | Bukti/WB-04-J1.png |
-| WB-04-J2 |  |  | Bukti/WB-04-J2.png |
-| WB-04-J3 |  |  | Bukti/WB-04-J3.png |
-| WB-04-J4 |  |  | Bukti/WB-04-J4.png |
+| WB-04-J1 | Halaman Verifikasi tampil dengan kartu ringkasan, tab filter, dan hasil pencarian. | Pass | Bukti/WB-04-J1.png |
+| WB-04-J2 | Belum dijalankan. Butuh akun uji yang belum punya baris pengumuman. | Belum dijalankan | Bukti/WB-04-J2.png |
+| WB-04-J3 | Belum dijalankan. Kondisi awal sudah ada (berkas belum terverifikasi), aksi dan notifikasinya belum diambil. | Belum dijalankan | Bukti/WB-04-J4-a-kondisi-awal.png |
+| WB-04-J4 | Akun uji berkas 6 dari 6 terverifikasi. Setelah Terima, status menjadi Diterima, hasil seleksi LOLOS yang sudah ada tidak berubah, dan email 'Verifikasi Berkas Pendaftaran' diterima. Baris pengumuman akun ini sudah ada sejak 20/06/2026, jadi yang dijalankan J4, bukan J2. | Pass | Bukti/WB-04-J4-a-kondisi-awal.png, WB-04-J4-b-berkas-verified.png, WB-04-J4-c-status-diterima.png, WB-04-J4-d-email-berkas-valid.png |
 | WB-04-J5 | Tidak mungkin | - | - |
-| WB-04-J6 |  |  | Bukti/WB-04-J6.png |
-| WB-04-J7 |  |  | Bukti/WB-04-J7.png |
-| WB-04-J8 |  |  | Bukti/WB-04-J8.png |
+| WB-04-J6 | Belum dijalankan. Butuh akun uji yang belum punya baris pengumuman. | Belum dijalankan | Bukti/WB-04-J6.png |
+| WB-04-J7 | Status pendaftar menjadi Ditolak. Hasil Seleksi di Kelola Pengumuman tampil '--' karena belum ditetapkan, sesuai alur sistem: berkas ditolak, pendaftar memperbaiki berkas, lalu admin menetapkan hasil lolos atau gagal lewat menu Pengumuman (hasil GAGAL tampil setelah ditetapkan, lihat WB-05-J7). Empat kartu ringkasan berjumlah 28 dari 29 pendaftar karena pendaftar ini belum masuk kartu mana pun (temuan T-2). Di sisi pendaftar, halaman Upload Berkas menampilkan 'Berkas Ditolak! Silakan perbaiki dan upload ulang' beserta catatan admin pada dokumen yang ditolak. Pesan sukses dan email Tolak di sisi admin belum tertangkap. | Pass | Bukti/WB-04-J7-a-modal-tolak.png, WB-04-J7-b-pengumuman-admin.png, WB-04-J7-c-kartu-ringkasan.png, WB-04-J7-d-sisi-user-berkas-ditolak.png |
+| WB-04-J8 | Belum dijalankan. | Belum dijalankan | Bukti/WB-04-J8.png |
 | WB-04-J9 | Tidak dijalankan | - | - |
-| WB-04-J10 |  |  | Bukti/WB-04-J10.png |
+| WB-04-J10 | Belum dijalankan. | Belum dijalankan | Bukti/WB-04-J10.png |
 
 ## WB-05 - Penyimpanan hasil seleksi
 
@@ -242,7 +242,7 @@ V(G) = **9**, jadi himpunan jalur independen berisi 9 jalur.
 | Jalur | Rangkaian simpul | Skenario dan data uji | Hasil diharapkan | Cara | Keterangan |
 |---|---|---|---|---|---|
 | WB-05-J1 | 1 - 21 | Buka halaman Kelola Pengumuman tanpa mengirim form. | Daftar pendaftar tampil. | UI |  |
-| WB-05-J2 | 1 - 2 - 3 - 5 - 6 - 7 - 9 - 10 - 11 - 12 - 13 - 14 - 19 - 21 | Tetapkan hasil Lolos beserta catatan untuk pendaftar yang sudah punya baris pengumuman. | Pesan 'Pengumuman berhasil diperbarui', email lulus dikirim. | UI | Sama dengan TS-AD-09. |
+| WB-05-J2 | Hasil LOLOS disimpan untuk pendaftar yang sudah punya baris pengumuman, dan email 'Pengumuman Hasil Seleksi' berlabel DITERIMA diterima. Pesan sukses di halaman belum tertangkap. | Pass | Bukti/WB-05-J2-modal-lolos.png, WB-05-J2-b-email-lulus.png |
 | WB-05-J3 | 1 - 2 - 3 - 4 - 21 | Di DevTools ubah value pada pilihan hasil seleksi menjadi 'xyz', lalu simpan. | Pesan 'Status hasil seleksi tidak valid!' dan data tidak berubah. | DevTools |  |
 | WB-05-J4 | 1 - 2 - 3 - 5 - 6 - 8 - 9 - 10 - 11 - 12 - 13 - 14 - 19 - 21 | Tetapkan hasil untuk pendaftar yang belum punya baris pengumuman. | Baris pengumuman baru dibuat dan pesan sukses tampil. | UI | Pakai akun uji yang belum pernah diproses. |
 | WB-05-J5 | 1 - 2 - 3 - 5 - 6 - 7 - 9 - 20 - 21 | Query simpan pengumuman gagal. | Pesan 'Gagal memperbarui pengumuman: ...'. | Tidak dijalankan | Butuh error database. |
@@ -255,15 +255,42 @@ V(G) = **9**, jadi himpunan jalur independen berisi 9 jalur.
 
 | Jalur | Hasil aktual | Status | Bukti |
 |---|---|---|---|
-| WB-05-J1 |  |  | Bukti/WB-05-J1.png |
-| WB-05-J2 |  |  | Bukti/WB-05-J2.png |
-| WB-05-J3 |  |  | Bukti/WB-05-J3.png |
-| WB-05-J4 |  |  | Bukti/WB-05-J4.png |
+| WB-05-J1 | Halaman Kelola Pengumuman tampil. Kartu: 8 belum diumumkan, 1 dalam proses, 12 lolos, 7 tidak lolos, dari 29 pendaftar. | Pass | Bukti/WB-05-J1.png |
+| WB-05-J2 | Hasil LOLOS disimpan untuk pendaftar yang sudah punya baris pengumuman, dan email 'Pengumuman Hasil Seleksi' berlabel DITERIMA diterima. Pesan sukses di halaman belum tertangkap. | Pass | Bukti/WB-05-J2-modal-lolos.png, WB-05-J2-b-email-lulus.png |
+| WB-05-J3 | Belum dijalankan. | Belum dijalankan | Bukti/WB-05-J3.png |
+| WB-05-J4 | Belum dijalankan. Butuh akun uji yang belum pernah diproses. | Belum dijalankan | Bukti/WB-05-J4.png |
 | WB-05-J5 | Tidak dijalankan | - | - |
-| WB-05-J6 |  |  | Bukti/WB-05-J6.png |
-| WB-05-J7 |  |  | Bukti/WB-05-J7.png |
+| WB-05-J6 | Belum dijalankan. | Belum dijalankan | Bukti/WB-05-J6.png |
+| WB-05-J7 | Hasil GAGAL disimpan untuk pendaftar yang sudah punya baris pengumuman, dan email 'Pengumuman Hasil Seleksi' dengan label BELUM DITERIMA diterima. Di daftar, baris pendaftar itu kini menampilkan GAGAL (sebelumnya '--' setelah Tolak). Pesan sukses di halaman belum tertangkap. | Pass | Bukti/WB-05-J7-a-modal-gagal.png, WB-05-J7-b-email-belum-diterima.png, WB-05-J7-c-daftar-gagal.png |
 | WB-05-J8 | Tidak mungkin | - | - |
 | WB-05-J9 | Tidak mungkin | - | - |
+
+## Realisasi pelaksanaan putaran 1 (24 November 2026)
+
+Pada putaran ini yang dijalankan hanya jalur utama. Jalur lain belum dijalankan dan tidak dihitung sebagai Pass.
+
+| Unit | Jalur yang bisa dijalankan | Sudah dijalankan | Sisa | Pass | Fail |
+|---|---|---|---|---|---|
+| WB-01 | 7 | 7 | 0 | 7 | 0 |
+| WB-02 | 4 | 3 | 1 (J3) | 3 | 0 |
+| WB-03 | 7 | 2 | 5 (J2, J5, J6, J7, J8) | 2 | 0 |
+| WB-04 | 8 | 3 | 5 (J2, J3, J6, J8, J10) | 3 | 0 |
+| WB-05 | 6 | 3 | 3 (J3, J4, J6) | 3 | 0 |
+| Total | 32 | 18 | 14 | 18 | 0 |
+
+Kode dibaca dari berkas sumber di GitHub (cabang main). Bukti pembacaan kode: `Bukti/WB-01-kode-a-login-baris-11-34.png`, `WB-01-kode-b-login-baris-33-55.png`, `WB-02-kode-a-register.png`, `WB-02-kode-b-register.png`, `WB-03-kode-a-upload.png`, `WB-03-kode-b-upload.png`, dan `WB-05-kode-pengumuman-baris-6-40.png`.
+
+## Temuan dari pelaksanaan
+
+Temuan di bawah sudah terlihat di website. Masuk ke Bug Report setelah severity ditetapkan.
+
+| No | Jalur | Yang terlihat | Dugaan severity | Bukti |
+|---|---|---|---|---|
+| T-1 | WB-01-J6 | Pesan 'Akun belum diaktifasi' dan banner hijau 'Registrasi berhasil!' tampil bersamaan karena parameter registered=success masih ada di URL. Pesan saling bertentangan. | Minor | Bukti/WB-01-J6.png |
+| T-2 | WB-04-J7 | Pendaftar yang berkasnya ditolak tidak masuk kartu ringkasan Kelola Pengumuman mana pun (total kartu 28 dari 29), karena hasilnya belum ditetapkan. Sesuai alur, tetapi jumlah kartu tidak sama dengan jumlah pendaftar. Hanya observasi, bukan defect bila memang disengaja. | Trivial | Bukti/WB-04-J7-b-pengumuman-admin.png, Bukti/WB-04-J7-c-kartu-ringkasan.png |
+| T-3 | Detail Pendaftar | Setelah status menjadi DITERIMA, banner 'Siap diverifikasi di Halaman Verifikasi' dan tombol 'Lanjutkan ke Halaman Verifikasi' masih tampil. | Trivial | Bukti/WB-04-J4-c-status-diterima.png |
+| T-4 | WB-01 | Pada URL login dengan logout=success tidak ada pesan logout. Mendukung W-6. | Minor | Bukti/WB-01-T4-logout-tanpa-pesan.png |
+| T-5 | Upload Berkas (sisi pendaftar) | Indikator 'Kelengkapan Berkas Wajib' menunjukkan 4 / 4 berkas walau satu berkas wajib berstatus Ditolak. Angka menghitung berkas yang sudah diunggah, bukan yang lolos verifikasi, sehingga labelnya bisa menyesatkan. | Trivial | Bukti/WB-04-J7-d-sisi-user-berkas-ditolak.png |
 
 ## Temuan awal dari pembacaan kode
 
