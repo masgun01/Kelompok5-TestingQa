@@ -20,4 +20,7 @@ Berikut merupakan flowchart proses pendaftar dalam mengisi formulir, mengunggah 
 10. Jika hasilnya Gagal, sistem menampilkan pesan tidak lolos.
 11. Jika hasilnya Lolos, pendaftar membuka Daftar Ulang untuk melihat berkas yang harus dibawa dan informasi pembayaran.
 12. Pendaftar melakukan logout dan proses selesai.
-    
+
+## Sumber Diagram
+
+Gambar dibuat dengan Graphviz dari [`source/Pendaftar_flowchart.dot`](source/Pendaftar_flowchart.dot).

@@ -1,0 +1,27 @@
+digraph F {
+  graph [rankdir=TB, splines=spline, nodesep=0.7, ranksep=0.45, fontname="Helvetica", label="FLOWCHART LOGIN DAN LOGOUT", labelloc=t, labeljust=l, fontsize=16, pad=0.4, bgcolor="white"];
+  node [fontname="Helvetica", fontsize=12, penwidth=1.3];
+  edge [fontname="Helvetica", fontsize=11, color="#222222", arrowsize=0.8];
+  s [shape=ellipse, style=filled, fillcolor="#d5e8d4", color="#82b366", width=1.6, height=0.6, label="Mulai"];
+  l0 [shape=box, style=filled, fillcolor="#dae8fc", color="#6c8ebf", width=2.6, height=0.6, label="Buka halaman Login"];
+  l1 [shape=parallelogram, style=filled, fillcolor="#fff2cc", color="#d6b656", width=2.6, height=0.6, label="Isi email & password"];
+  l2 [shape=diamond, style=filled, fillcolor="#f8cecc", color="#b85450", width=3.0, height=1.1, label="Email & password\nbenar?"];
+  l3 [shape=diamond, style=filled, fillcolor="#f8cecc", color="#b85450", width=3.0, height=1.1, label="Akun sudah\ndiaktivasi?"];
+  l4 [shape=diamond, style=filled, fillcolor="#f8cecc", color="#b85450", width=3.0, height=1.1, label="Role admin?"];
+  a1 [shape=box, style=filled, fillcolor="#dae8fc", color="#6c8ebf", width=2.6, height=0.6, label="Masuk Dashboard Admin"];
+  u1 [shape=box, style=filled, fillcolor="#dae8fc", color="#6c8ebf", width=2.6, height=0.6, label="Masuk Beranda Pendaftar"];
+  lo [shape=box, style=filled, fillcolor="#dae8fc", color="#6c8ebf", width=2.6, height=0.6, label="Logout: sesi diakhiri"];
+  e [shape=ellipse, style=filled, fillcolor="#d5e8d4", color="#82b366", width=1.6, height=0.6, label="Selesai"];
+  s -> l0 [];
+  l0 -> l1 [];
+  l1 -> l2 [];
+  l2 -> l1 [label="Tidak", fontcolor="#c62828", fontname="Helvetica-Bold", constraint=false, tailport=e, headport=e];
+  l2 -> l3 [label="Ya", fontcolor="#1a7f37", fontname="Helvetica-Bold"];
+  l3 -> l1 [label="Tidak", fontcolor="#c62828", fontname="Helvetica-Bold", constraint=false, tailport=e, headport=e];
+  l3 -> l4 [label="Ya", fontcolor="#1a7f37", fontname="Helvetica-Bold"];
+  l4 -> a1 [label="Ya", fontcolor="#1a7f37", fontname="Helvetica-Bold"];
+  l4 -> u1 [label="Tidak", fontcolor="#c62828", fontname="Helvetica-Bold"];
+  a1 -> lo [];
+  u1 -> lo [];
+  lo -> e [];
+}

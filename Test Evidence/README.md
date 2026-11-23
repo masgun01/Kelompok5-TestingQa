@@ -7,5 +7,6 @@ Tangkapan layar hasil pengujian, satu folder per role. Nama berkas sama dengan I
 | Autentikasi | Bukti test case TC-AU |
 | User | Bukti test case TC-PD |
 | Admin | Bukti test case TC-AD |
+| Sistem | Bukti test case TC-SM, TC-IN, TC-NF, TC-PF, TC-SC, TC-AP, TC-UA, TC-RG, TC-EX |
 
 Jangan unggah gambar yang memuat password atau dokumen pribadi asli.

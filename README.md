@@ -36,7 +36,10 @@ Pengujian hanya mencakup 11 fitur utama berikut:
 Jenis pengujian yang dilakukan:
 
 - **Manual Testing (Black-box Testing)**: pengujian langsung melalui website berdasarkan Test Scenario dan Test Case, memakai teknik Equivalence Partitioning, Boundary Value Analysis, State Transition Testing, dan Use Case Testing.
-- **White-box Testing (Basis Path Testing)**: pengujian alur logika program pada fungsi-fungsi inti fitur utama berdasarkan source code, melalui flow graph, perhitungan Cyclomatic Complexity, dan jalur independen.
+- **White-box Testing**: Basis Path Testing pada lima unit kode (flow graph, Cyclomatic Complexity, jalur independen), ditambah Statement, Branch, Condition Coverage, Loop, dan Data Flow Testing.
+- **Pengujian tingkat sistem**: Smoke, Sanity, Integrasi, Eksploratori, UAT, dan Regresi.
+- **Non-fungsional**: kegunaan, kompatibilitas, aksesibilitas, performa (skala kecil), dan keamanan (pemeriksaan pasif dan peninjauan kode).
+- **API Testing** pada endpoint AJAX admin dan **Automation Testing** (Playwright) pada alur yang berulang.
 
 Menu Laporan, Data User, ekspor data, dan halaman landing tidak termasuk ruang lingkup. Rinciannya ada di [Test Plan](Test%20Plan/Test%20Plan.md).
 
@@ -83,9 +86,13 @@ Dosen Pengampu: Asep Erlan Maulana, S.Kom., M.Kom.
 | [Test Scenario](Test%20Scenario/Test%20Scenario.md) | Daftar skenario pengujian per role |
 | [Test Case](Test%20Case/) | Test case per role (Excel) |
 | [White-box Testing](White-box%20Testing/) | Basis Path Testing pada lima unit kode |
+| [Automation Testing](Automation%20Testing/README.md) | Skrip Playwright, Postman, k6 (belum dijalankan) |
+| [UAT](UAT/UAT%20Plan%20dan%20Hasil.md) | Rencana dan hasil User Acceptance Testing |
+| [Regression](Regression/Regression%20Record.md) | Strategi dan catatan regresi |
+| [Pemetaan Materi](Pemetaan%20Materi.md) | Peta topik materi kuliah ke bagian proyek |
 | [Test Evidence](Test%20Evidence/) | Tangkapan layar bukti pengujian |
 | [Bug Report](Bug%20Report/) | Daftar defect yang ditemukan |
-| [Test Report](Test%20Report/) | Ringkasan dan evaluasi hasil pengujian |
+| [Test Report](Test%20Report/Test%20Report.md) | Kerangka ringkasan dan evaluasi hasil pengujian |
 
 ## Kontribusi dan Dokumentasi
 

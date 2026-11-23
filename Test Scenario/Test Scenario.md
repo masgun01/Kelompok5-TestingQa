@@ -65,17 +65,112 @@ Keterangan kolom:
 | TS-AD-11 | Kelola Pengumuman | Memastikan admin dapat mengembalikan hasil seleksi ke Pending tanpa mengirim email. | Positif | Low |
 | TS-AD-12 | Logout | Memastikan admin berhasil logout dari sistem. | Positif | Low |
 
+**SISTEM – Smoke dan Sanity**
+
+| **ID** | **Fitur** | **Test Skenario** | **Tipe** | **Prioritas** |
+| -------- | --------- | ----------------- | -------- | ------------- |
+| TS-SM-01 | Smoke Test | Memastikan 11 fitur utama dapat dibuka tanpa error setelah ada versi baru atau di awal sesi pengujian. | Positif | High |
+| TS-SM-02 | Sanity Test | Memastikan perbaikan sebuah defect berhasil dan tidak merusak fitur terkait. | Positif | High |
+
+**SISTEM – Integrasi**
+
+| **ID** | **Fitur** | **Test Skenario** | **Tipe** | **Prioritas** |
+| -------- | --------- | ----------------- | -------- | ------------- |
+| TS-IN-01 | Alur Lolos | Memastikan alur penuh berjalan: registrasi, aktivasi, login, formulir, upload berkas, verifikasi dan Terima admin, hasil Lolos, lalu Daftar Ulang. | Positif | High |
+| TS-IN-02 | Alur Gagal | Memastikan alur dengan hasil Gagal ditampilkan sebagai tidak lolos di Pengumuman dan Daftar Ulang tidak bisa dibuka. | Positif | High |
+| TS-IN-03 | Alur Tolak | Memastikan pendaftar yang ditolak di menu Verifikasi tampil sebagai tidak lolos di Pengumuman dan Daftar Ulang tidak bisa dibuka. | Positif | High |
+| TS-IN-04 | Email dan Link | Memastikan link di email aktivasi dan reset password mengarah ke alamat website yang benar dan berfungsi. | Positif | High |
+| TS-IN-05 | Konsistensi Data | Memastikan data yang diisi pada Formulir sama di Beranda, Detail Pendaftar (admin), dan Daftar Ulang. | Positif | Medium |
+| TS-IN-06 | Sinkron Dashboard | Memastikan angka Dashboard Admin berubah sesuai setelah aksi Terima. | Positif | Medium |
+
+**NON-FUNGSIONAL – Kegunaan dan Kompatibilitas**
+
+| **ID** | **Fitur** | **Test Skenario** | **Tipe** | **Prioritas** |
+| -------- | --------- | ----------------- | -------- | ------------- |
+| TS-NF-01 | Kegunaan | Memastikan pesan error dan validasi jelas, berbahasa Indonesia, dan tidak memuat istilah teknis. | Positif | Medium |
+| TS-NF-02 | Kegunaan | Memastikan user baru dapat mengetahui langkah berikutnya dan selalu punya jalan kembali. | Positif | Medium |
+| TS-NF-03 | Kompatibilitas | Memastikan halaman kunci tampil dan berfungsi sama di Chrome, Edge, dan Firefox. | Positif | Medium |
+| TS-NF-04 | Kompatibilitas | Memastikan halaman kunci tampil baik pada lebar layar 360, 768, dan 1366 piksel. | Positif | Medium |
+| TS-NF-05 | Aksesibilitas | Memastikan form dapat diisi hanya dengan keyboard dan label serta kontras terbaca. | Positif | Medium |
+
+**NON-FUNGSIONAL – Performa**
+
+| **ID** | **Fitur** | **Test Skenario** | **Tipe** | **Prioritas** |
+| -------- | --------- | ----------------- | -------- | ------------- |
+| TS-PF-01 | Waktu Muat | Memastikan halaman Login, Registrasi, Beranda User, dan Dashboard Admin selesai dimuat dalam 3 detik. | Positif | Medium |
+| TS-PF-02 | Waktu Upload | Memastikan unggah berkas 2.000.000 byte selesai dengan pesan hasil dalam 10 detik. | Positif | Medium |
+| TS-PF-03 | Load Testing | Memastikan halaman publik tetap merespons tanpa error pada 10 pengguna virtual selama 60 detik. | Positif | Low |
+
+**NON-FUNGSIONAL – Keamanan (terbatas)**
+
+| **ID** | **Fitur** | **Test Skenario** | **Tipe** | **Prioritas** |
+| -------- | --------- | ----------------- | -------- | ------------- |
+| TS-SC-01 | Transport | Memastikan website memakai HTTPS dengan sertifikat valid dan HTTP dialihkan ke HTTPS. | Positif | High |
+| TS-SC-02 | Sesi | Memastikan cookie sesi memiliki atribut HttpOnly, Secure, dan SameSite. | Positif | Medium |
+| TS-SC-03 | Otorisasi | Memastikan sesi user biasa tidak bisa menjalankan aksi admin lewat alamat langsung. | Negatif | High |
+| TS-SC-04 | Penyimpanan Password | Memastikan password disimpan dengan hash modern bersalt (peninjauan kode). | Positif | High |
+| TS-SC-05 | Input Khusus | Memastikan karakter khusus pada kolom teks tidak menyebabkan error dan tampil sebagai teks biasa. | Negatif | Medium |
+| TS-SC-06 | Berkas Unggahan | Memastikan berkas unggahan tidak bisa dibuka tanpa login dan isi folder tidak bisa dilihat. | Negatif | High |
+| TS-SC-07 | Pesan Error | Memastikan pesan ke pengguna tidak memuat detail teknis basis data (peninjauan kode). | Negatif | Medium |
+| TS-SC-08 | Percobaan Login | Memastikan ada pembatasan setelah beberapa kali login salah beruntun. | Negatif | Medium |
+
+**NON-FUNGSIONAL – API**
+
+| **ID** | **Fitur** | **Test Skenario** | **Tipe** | **Prioritas** |
+| -------- | --------- | ----------------- | -------- | ------------- |
+| TS-AP-01 | Simpan Verifikasi Dokumen | Memastikan permintaan verifikasi dokumen yang valid menghasilkan JSON sukses dengan struktur lengkap. | Positif | High |
+| TS-AP-02 | Simpan Verifikasi Dokumen | Memastikan parameter file_field atau status yang salah ditolak dengan pesan 'Permintaan tidak valid.' | Negatif | High |
+| TS-AP-03 | Simpan Verifikasi Dokumen | Memastikan penolakan dokumen tanpa catatan, dan verifikasi dokumen yang belum diunggah, ditolak dengan pesan yang sesuai. | Negatif | Medium |
+| TS-AP-04 | Terima Pendaftar | Memastikan aksi terima menghasilkan JSON gagal bila berkas belum terverifikasi dan JSON sukses bila sudah. | Positif | High |
+| TS-AP-05 | Tolak Pendaftar | Memastikan aksi tolak dengan catatan menghasilkan JSON sukses dan data berubah. | Positif | High |
+| TS-AP-06 | Hak Akses API | Memastikan pemanggilan endpoint admin tanpa sesi admin dialihkan ke login dan tidak mengubah data. | Negatif | High |
+
+**AKSEPTASI – User Acceptance Testing**
+
+| **ID** | **Fitur** | **Test Skenario** | **Tipe** | **Prioritas** |
+| -------- | --------- | ----------------- | -------- | ------------- |
+| TS-UA-01 | UAT User | Memastikan responden calon orang tua dapat menyelesaikan lima tugas user tanpa bantuan. | Positif | High |
+| TS-UA-02 | UAT Admin | Memastikan responden petugas admin dapat memverifikasi satu pendaftar uji sampai hasil seleksi ditetapkan tanpa bantuan. | Positif | High |
+| TS-UA-03 | Kriteria Penerimaan | Memastikan empat kriteria penerimaan terpenuhi dan hasilnya ditandatangani. | Positif | High |
+
+**REGRESI**
+
+| **ID** | **Fitur** | **Test Skenario** | **Tipe** | **Prioritas** |
+| -------- | --------- | ----------------- | -------- | ------------- |
+| TS-RG-01 | Regression Suite | Memastikan semua test case berprioritas High tetap lulus setelah defect diperbaiki atau commit berubah. | Positif | High |
+| TS-RG-02 | Retest Defect | Memastikan setiap defect yang sudah diperbaiki tidak muncul lagi. | Positif | High |
+
+**EKSPLORATORI**
+
+| **ID** | **Fitur** | **Test Skenario** | **Tipe** | **Prioritas** |
+| -------- | --------- | ----------------- | -------- | ------------- |
+| TS-EX-01 | Formulir Pendaftaran | Menjelajahi Formulir Pendaftaran dengan data tidak biasa selama 30 menit. | Negatif | Medium |
+| TS-EX-02 | Verifikasi Admin | Menjelajahi alur Verifikasi dan Kelola Pengumuman dengan urutan aksi tidak biasa selama 30 menit. | Negatif | Medium |
+| TS-EX-03 | Autentikasi dan Navigasi | Menjelajahi login, sesi, dan navigasi (Back, Forward, dua tab) selama 30 menit. | Negatif | Medium |
+
 **Catatan Pelaksanaan**
 
 - Skenario Admin yang mengubah status (TS-AD-05 sampai TS-AD-11) hanya dijalankan pada akun uji milik tim, karena setiap aksi mengirim email ke pendaftar.
 - TS-PD-14 sengaja menguji dua jalan menuju status tidak lolos (dari menu Pengumuman dan dari aksi Tolak di menu Verifikasi), karena kedua menu menyimpan nilai status yang berbeda di source code.
 - Rincian data uji, nilai batas, langkah, dan hasil yang diharapkan ada di dokumen Test Case.
+- Skenario TS-SM sampai TS-EX melengkapi skenario fitur di atas supaya seluruh materi pengujian tercakup. Rincian dan penanggung jawab ada di [Test Case Sistem](../Test%20Case/Test%20Case%20Sistem.xlsx).
+- Skenario Performa (TS-PF-03) hanya dijalankan setelah pemilik website mengizinkan. Skenario Keamanan (TS-SC) bersifat pemeriksaan pasif dan peninjauan kode, bukan penetration testing.
+- Skenario Integrasi (TS-IN) melibatkan dua orang: Jumigih di sisi user dan Lintang di sisi admin.
 
 **Ringkasan**
 
-| Role | Bagian | Jumlah Skenario | Positif | Negatif |
+| Kelompok | Bagian | Jumlah Skenario | Positif | Negatif |
 |---|---|---|---|---|
 | User | Autentikasi | 14 | 7 | 7 |
 | User | Pendaftaran | 16 | 10 | 6 |
 | Admin | Dashboard, Verifikasi, Pengumuman | 12 | 11 | 1 |
-| **Total** | | **42** | **28** | **14** |
+| Sistem | Smoke dan Sanity | 2 | 2 | 0 |
+| Sistem | Integrasi | 6 | 6 | 0 |
+| Sistem | Kegunaan dan Kompatibilitas | 5 | 5 | 0 |
+| Sistem | Performa | 3 | 3 | 0 |
+| Sistem | Keamanan (terbatas) | 8 | 3 | 5 |
+| Sistem | API | 6 | 3 | 3 |
+| Sistem | User Acceptance Testing | 3 | 3 | 0 |
+| Sistem | REGRESI | 2 | 2 | 0 |
+| Sistem | EKSPLORATORI | 3 | 0 | 3 |
+| **Total** | | **80** | **55** | **25** |

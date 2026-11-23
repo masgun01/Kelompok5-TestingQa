@@ -1,0 +1,273 @@
+{
+  "info": {
+    "name": "PPDB SLB - API (Kelompok 5)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Cookie sesi admin diisi manual di Postman (header Cookie). Jangan disimpan di file ini. Belum dijalankan."
+  },
+  "variable": [
+    {
+      "key": "base",
+      "value": "https://ppdb-slbsanadharma.up.railway.app/ppdb-slb"
+    },
+    {
+      "key": "id_b",
+      "value": "ISI_ID_AKUN_UJI_B"
+    },
+    {
+      "key": "id_c",
+      "value": "ISI_ID_AKUN_UJI_C"
+    },
+    {
+      "key": "id_d",
+      "value": "ISI_ID_AKUN_UJI_D"
+    }
+  ],
+  "item": [
+    {
+      "name": "TC-AP-01 verifikasi dokumen valid",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-Requested-With",
+            "value": "XMLHttpRequest"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/admin/detail-pendaftar.php?id={{id_b}}",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "admin",
+            "detail-pendaftar.php?id={{id_b}}"
+          ]
+        },
+        "description": "",
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "ajax_verifikasi_dokumen",
+              "value": "1"
+            },
+            {
+              "key": "file_field",
+              "value": "foto_siswa"
+            },
+            {
+              "key": "status",
+              "value": "verified"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "TC-AP-02a file_field salah",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-Requested-With",
+            "value": "XMLHttpRequest"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/admin/detail-pendaftar.php?id={{id_b}}",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "admin",
+            "detail-pendaftar.php?id={{id_b}}"
+          ]
+        },
+        "description": "",
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "ajax_verifikasi_dokumen",
+              "value": "1"
+            },
+            {
+              "key": "file_field",
+              "value": "xyz"
+            },
+            {
+              "key": "status",
+              "value": "verified"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "TC-AP-02b status salah",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-Requested-With",
+            "value": "XMLHttpRequest"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/admin/detail-pendaftar.php?id={{id_b}}",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "admin",
+            "detail-pendaftar.php?id={{id_b}}"
+          ]
+        },
+        "description": "",
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "ajax_verifikasi_dokumen",
+              "value": "1"
+            },
+            {
+              "key": "file_field",
+              "value": "foto_siswa"
+            },
+            {
+              "key": "status",
+              "value": "abc"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "TC-AP-03a tolak tanpa catatan",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-Requested-With",
+            "value": "XMLHttpRequest"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/admin/detail-pendaftar.php?id={{id_b}}",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "admin",
+            "detail-pendaftar.php?id={{id_b}}"
+          ]
+        },
+        "description": "",
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "ajax_verifikasi_dokumen",
+              "value": "1"
+            },
+            {
+              "key": "file_field",
+              "value": "foto_siswa"
+            },
+            {
+              "key": "status",
+              "value": "rejected"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "TC-AP-03b dokumen belum diunggah",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-Requested-With",
+            "value": "XMLHttpRequest"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/admin/detail-pendaftar.php?id={{id_b}}",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "admin",
+            "detail-pendaftar.php?id={{id_b}}"
+          ]
+        },
+        "description": "",
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "ajax_verifikasi_dokumen",
+              "value": "1"
+            },
+            {
+              "key": "file_field",
+              "value": "ijazah"
+            },
+            {
+              "key": "status",
+              "value": "verified"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "TC-AP-04 terima (B belum, C sudah terverifikasi)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-Requested-With",
+            "value": "XMLHttpRequest"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/admin/verifikasi.php?action=terima&id={{id_c}}",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "admin",
+            "verifikasi.php?action=terima&id={{id_c}}"
+          ]
+        },
+        "description": ""
+      }
+    },
+    {
+      "name": "TC-AP-05 tolak dengan catatan",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-Requested-With",
+            "value": "XMLHttpRequest"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/admin/verifikasi.php?action=tolak&id={{id_d}}&catatan=Berkas%20tidak%20lengkap",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "admin",
+            "verifikasi.php?action=tolak&id={{id_d}}&catatan=Berkas%20tidak%20lengkap"
+          ]
+        },
+        "description": ""
+      }
+    }
+  ]
+}

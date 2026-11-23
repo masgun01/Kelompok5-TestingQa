@@ -16,3 +16,7 @@ Berikut merupakan flowchart proses user dalam membuat akun baru dan mengaktifkan
 6. Jika email belum terdaftar, sistem menyimpan akun dengan status belum aktif dan mengirim link aktivasi ke email.
 7. User membuka email dan mengklik link aktivasi.
 8. Sistem mengaktifkan akun dan mengarahkan user ke halaman login. Proses selesai.
+
+## Sumber Diagram
+
+Gambar dibuat dengan Graphviz dari [`source/Registrasi_flowchart.dot`](source/Registrasi_flowchart.dot).

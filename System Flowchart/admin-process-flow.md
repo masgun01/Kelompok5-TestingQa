@@ -19,3 +19,7 @@ Berikut merupakan flowchart proses admin dalam memverifikasi pendaftar dan mengu
 9. Admin membuka menu Kelola Pengumuman, memilih hasil seleksi, dan mengisi catatan.
 10. Untuk hasil Lolos atau Gagal, sistem menyimpan dan mengirim email hasil seleksi. Untuk Pending, sistem hanya menyimpan tanpa mengirim email.
 11. Admin melakukan logout dan proses selesai.
+
+## Sumber Diagram
+
+Gambar dibuat dengan Graphviz dari [`source/Admin_flowchart.dot`](source/Admin_flowchart.dot).

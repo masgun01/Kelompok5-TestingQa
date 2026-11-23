@@ -15,3 +15,7 @@ Berikut merupakan flowchart proses login dan logout untuk pendaftar maupun admin
 5. Jika akun aktif, sistem memeriksa role pengguna.
 6. Admin diarahkan ke Dashboard Admin, sedangkan pendaftar diarahkan ke Beranda Pendaftar.
 7. Setelah selesai, pengguna memilih Logout. Sistem mengakhiri sesi dan proses selesai.
+
+## Sumber Diagram
+
+Gambar dibuat dengan Graphviz dari [`source/Login_flowchart.dot`](source/Login_flowchart.dot).

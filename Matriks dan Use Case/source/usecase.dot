@@ -1,0 +1,42 @@
+digraph UC {
+  rankdir=LR; splines=line; nodesep=0.22; ranksep=1.3;
+  graph [fontname="Helvetica", bgcolor="white", pad=0.3];
+  node [fontname="Helvetica", fontsize=12]; edge [arrowhead=none, color="#444444"];
+  pend [shape=none, label=<<TABLE BORDER="0" CELLSPACING="0"><TR><TD FIXEDSIZE="TRUE" WIDTH="54" HEIGHT="81"><IMG SRC="actor.png" SCALE="TRUE"/></TD></TR><TR><TD>User</TD></TR></TABLE>>];
+  admin [shape=none, label=<<TABLE BORDER="0" CELLSPACING="0"><TR><TD FIXEDSIZE="TRUE" WIDTH="54" HEIGHT="81"><IMG SRC="actor.png" SCALE="TRUE"/></TD></TR><TR><TD>Admin</TD></TR></TABLE>>];
+  subgraph cluster_sys {
+    label="PPDB SLB Sana Dharma"; labeljust=c; fontsize=15; fontname="Helvetica-Bold"; style=rounded; color="#7a2e2e"; penwidth=1.6; margin=18;
+    node [shape=ellipse, style=filled, fillcolor="#dae8fc", color="#6c8ebf", width=2.6, height=0.62];
+    reg [label="Registrasi Akun"];
+    akt [label="Aktivasi Akun\nvia Email"];
+    ber [label="Melihat Beranda"];
+    form [label="Mengisi Formulir\nPendaftaran"];
+    up [label="Upload Berkas"];
+    pu [label="Melihat Pengumuman"];
+    du [label="Melihat Info\nDaftar Ulang"];
+    login [label="Login / Logout"];
+    lupa [label="Lupa & Reset\nPassword"];
+    dash [label="Melihat Dashboard\nStatistik"];
+    cari [label="Mencari & Menyaring\nPendaftar"];
+    vb [label="Memverifikasi\nBerkas"];
+    tt [label="Menerima / Menolak\nPendaftar"];
+    hs [label="Menetapkan Hasil\nSeleksi"];
+    {rank=same; reg; akt; ber; form; up; pu; du; login; lupa; dash; cari; vb; tt; hs;}
+  }
+  pend -> reg [headport=w];
+  pend -> akt [headport=w];
+  pend -> ber [headport=w];
+  pend -> form [headport=w];
+  pend -> up [headport=w];
+  pend -> pu [headport=w];
+  pend -> du [headport=w];
+  pend -> login [headport=w];
+  pend -> lupa [headport=w];
+  login -> admin [tailport=e];
+  lupa -> admin [tailport=e];
+  dash -> admin [tailport=e];
+  cari -> admin [tailport=e];
+  vb -> admin [tailport=e];
+  tt -> admin [tailport=e];
+  hs -> admin [tailport=e];
+}
