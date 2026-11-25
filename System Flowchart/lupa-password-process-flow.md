@@ -20,4 +20,4 @@ Berikut merupakan flowchart proses lupa password dan reset password pada website
 
 ## Sumber Diagram
 
-Gambar dibuat dengan Graphviz dari [`source/Lupa_Password_flowchart.dot`](source/Lupa_Password_flowchart.dot).
+Gambar dibuat dengan Graphviz (`Lupa_Password_flowchart.dot`).

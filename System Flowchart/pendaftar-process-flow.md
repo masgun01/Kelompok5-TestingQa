@@ -23,4 +23,4 @@ Berikut merupakan flowchart proses pendaftar dalam mengisi formulir, mengunggah 
 
 ## Sumber Diagram
 
-Gambar dibuat dengan Graphviz dari [`source/Pendaftar_flowchart.dot`](source/Pendaftar_flowchart.dot).
+Gambar dibuat dengan Graphviz (`Pendaftar_flowchart.dot`).

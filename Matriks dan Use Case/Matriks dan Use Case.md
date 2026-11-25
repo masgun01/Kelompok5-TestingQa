@@ -27,4 +27,4 @@ Keterangan:
 
 <img width="560" alt="Use case PPDB SLB Sana Dharma" src="images/use-case.png" />
 
-Sumber diagram: [`source/usecase.dot`](source/usecase.dot) (Graphviz). Untuk membuat ulang gambar: `dot -Tpng -Gdpi=150 usecase.dot -o use-case.png` dari dalam folder `source`.
+Sumber diagram dibuat dengan Graphviz (`usecase.dot`, `dot -Tpng -Gdpi=150 usecase.dot -o use-case.png`).

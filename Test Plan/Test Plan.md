@@ -283,7 +283,7 @@ Alat: Postman, dengan cookie sesi admin akun uji. Yang diperiksa: kode status HT
 | **Komponen** | **Keterangan** |
 |---|---|
 | Sistem Operasi | Windows 11 |
-| Browser | Google Chrome versi [ISI] (utama), Microsoft Edge dan Mozilla Firefox (untuk Compatibility Testing) |
+| Browser | Google Chrome / Chromium versi 131.0.6778.33 (utama), Microsoft Edge dan Mozilla Firefox (untuk Compatibility Testing) |
 | Aplikasi | PPDB SLB Sana Dharma, commit `70a38d9` |
 | Server | Railway (container Docker, PHP 8.2, Apache) |
 | Basis Data | MySQL (Railway) |

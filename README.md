@@ -84,15 +84,15 @@ Dosen Pengampu: Asep Erlan Maulana, S.Kom., M.Kom.
 | [System Flowchart](System%20Flowchart/) | Flowchart alur proses per role |
 | [Test Plan](Test%20Plan/Test%20Plan.md) | Rencana pengujian |
 | [Test Scenario](Test%20Scenario/Test%20Scenario.md) | Daftar skenario pengujian per role |
-| [Test Case](Test%20Case/) | Test case per role (Excel) |
-| [White-box Testing](White-box%20Testing/) | Basis Path Testing pada lima unit kode |
-| [Automation Testing](Automation%20Testing/README.md) | Skrip Playwright, Postman, k6 (belum dijalankan) |
+| [Test Case](Test%20Case/) | Test case per role (4 berkas Excel) beserta Daftar Keyword dan Decision Table |
+| [White-box Testing](White-box%20Testing/) | Basis Path Testing pada lima unit kode (29/32 jalur dijalankan) |
+| [Automation Testing](Automation%20Testing/README.md) | Skrip Playwright, Postman, k6, dan cek-header.sh (sudah dijalankan) |
 | [UAT](UAT/UAT%20Plan%20dan%20Hasil.md) | Rencana dan hasil User Acceptance Testing |
-| [Regression](Regression/Regression%20Record.md) | Strategi dan catatan regresi |
+| [Regression](Regression/Regression%20Record.md) | Strategi dan catatan regresi (Run 1 & Run 2) |
 | [Pemetaan Materi](Pemetaan%20Materi.md) | Peta topik materi kuliah ke bagian proyek |
 | [Test Evidence](Test%20Evidence/) | Tangkapan layar bukti pengujian |
-| [Bug Report](Bug%20Report/) | Daftar defect yang ditemukan |
-| [Test Report](Test%20Report/Test%20Report.md) | Kerangka ringkasan dan evaluasi hasil pengujian |
+| [Bug Report](Bug%20Report/) | Daftar defect yang ditemukan (`BUG-001` s/d `BUG-010`) |
+| [Test Report](Test%20Report/Test%20Report.md) | Ringkasan dan evaluasi hasil pengujian |
 
 ## Kontribusi dan Dokumentasi
 

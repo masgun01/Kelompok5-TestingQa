@@ -19,4 +19,4 @@ Berikut merupakan flowchart proses user dalam membuat akun baru dan mengaktifkan
 
 ## Sumber Diagram
 
-Gambar dibuat dengan Graphviz dari [`source/Registrasi_flowchart.dot`](source/Registrasi_flowchart.dot).
+Gambar dibuat dengan Graphviz (`Registrasi_flowchart.dot`).

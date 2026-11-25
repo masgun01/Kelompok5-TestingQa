@@ -22,4 +22,4 @@ Berikut merupakan flowchart proses admin dalam memverifikasi pendaftar dan mengu
 
 ## Sumber Diagram
 
-Gambar dibuat dengan Graphviz dari [`source/Admin_flowchart.dot`](source/Admin_flowchart.dot).
+Gambar dibuat dengan Graphviz (`Admin_flowchart.dot`).

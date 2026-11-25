@@ -18,4 +18,4 @@ Berikut merupakan flowchart proses login dan logout untuk pendaftar maupun admin
 
 ## Sumber Diagram
 
-Gambar dibuat dengan Graphviz dari [`source/Login_flowchart.dot`](source/Login_flowchart.dot).
+Gambar dibuat dengan Graphviz (`Login_flowchart.dot`).
