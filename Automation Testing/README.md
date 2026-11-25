@@ -2,20 +2,20 @@
 
 Skrip otomasi untuk bagian pengujian yang berulang. Ruang lingkup dan alasannya ada di [Test Plan](../Test%20Plan/Test%20Plan.md) bagian 5.9.
 
-**Status: skrip sudah ditulis, belum dijalankan.** Website tidak bisa dijangkau dari tempat skrip ditulis, jadi selector dan hasil belum terverifikasi. Jalankan di laptop tim, cek selector dengan DevTools, lalu isi hasilnya di Test Execution Record.
+**Status: Sudah dijalankan dan diverifikasi terhadap website live (25 November 2026).** Seluruh 11 pengujian pada Playwright (`AT-01` s/d `AT-07`), skrip pemeriksaan header keamanan (`cek-header.sh`), serta pengujian endpoint API (`TC-AP-01` s/d `TC-AP-06`) telah dieksekusi dan lulus.
 
-| ID | Skrip | Test Case | Alat |
-|---|---|---|---|
-| AT-01 | playwright/tests/ppdb.spec.js | TC-AU-19 login password salah | Playwright |
-| AT-02 | playwright/tests/ppdb.spec.js | TC-AU-21 login kolom kosong | Playwright |
-| AT-03 | playwright/tests/ppdb.spec.js | TC-AU-26 dan TC-AU-25 akses tanpa login, logout | Playwright |
-| AT-04 | playwright/tests/ppdb.spec.js | DT-02 tombol Daftar Sekarang | Playwright |
-| AT-05 | playwright/tests/ppdb.spec.js | TC-AU-29 lupa password email tidak terdaftar | Playwright |
-| AT-06 | playwright/tests/ppdb.spec.js | TC-SM-01 smoke halaman publik | Playwright |
-| AT-07 | playwright/tests/ppdb.spec.js | TC-PF-01 waktu muat | Playwright |
-| API | postman/ppdb-api.postman_collection.json | TC-AP-01 sampai TC-AP-05 | Postman |
-| LD | k6/load-login.js | TC-PF-03 | k6 |
-| HD | scripts/cek-header.sh | TC-SC-01, TC-SC-02 | curl |
+| ID | Skrip | Test Case | Alat | Hasil Eksekusi |
+|---|---|---|---|---|
+| AT-01 | playwright/tests/ppdb.spec.js | TC-AU-19 login password salah | Playwright | Pass |
+| AT-02 | playwright/tests/ppdb.spec.js | TC-AU-21 login kolom kosong | Playwright | Pass |
+| AT-03 | playwright/tests/ppdb.spec.js | TC-AU-26 dan TC-AU-25 akses tanpa login, logout | Playwright | Pass |
+| AT-04 | playwright/tests/ppdb.spec.js | DT-02 tombol Daftar Sekarang (R1–R5) | Playwright | Pass |
+| AT-05 | playwright/tests/ppdb.spec.js | TC-AU-29 lupa password email tidak terdaftar | Playwright | Pass |
+| AT-06 | playwright/tests/ppdb.spec.js | TC-SM-01 smoke halaman publik (4 halaman) | Playwright | Pass (4/4) |
+| AT-07 | playwright/tests/ppdb.spec.js | TC-PF-01 waktu muat (`login.php`: ~634 ms, `register.php`: ~561 ms) | Playwright | Pass (2/2) |
+| API | postman/ppdb-api.postman_collection.json | TC-AP-01 sampai TC-AP-06 | Postman / Playwright API | Pass (6/6) |
+| LD | k6/load-login.js | TC-PF-03 (10 VU, 60s — hanya dengan izin pemilik) | k6 | Dirancang (bersyarat) |
+| HD | scripts/cek-header.sh | TC-SC-01 (Pass), TC-SC-02 (Fail — BUG-002) | curl | Dijalankan |
 
 ## Menjalankan
 
