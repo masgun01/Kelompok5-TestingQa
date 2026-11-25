@@ -16,17 +16,18 @@ Statement Coverage = simpul yang dilalui / seluruh simpul x 100%. Branch Coverag
 
 Tabel di atas adalah angka rencana. Angka aktual dihitung dari jalur yang sudah dijalankan.
 
-**Angka aktual sementara (putaran 1, 24 November 2026)**
+**Angka aktual setelah pelaksanaan putaran 2 (25 November 2026 — 29 dari 32 jalur dijalankan)**
 
 | Unit | Jalur yang dihitung | Simpul dilalui | Statement Coverage | Cabang dilalui | Branch Coverage |
 |---|---|---|---|---|---|
-| WB-01 | J1, J2, J3, J4, J5, J6, J8 | 19 dari 20 | 95,0% | 15 dari 16 | 93,8% |
-| WB-02 | J1, J2, J4 | 15 dari 21 | 71,4% | 10 dari 16 | 62,5% |
-| WB-03 | J1, J3 | 17 dari 25 | 68,0% | 12 dari 22 | 54,5% |
-| WB-04 | J1, J4, J7 | 22 dari 26 | 84,6% | 11 dari 18 | 61,1% |
-| WB-05 | J1, J2, J7 | 16 dari 21 | 76,2% | 9 dari 16 | 56,2% |
+| WB-01 | J1, J2, J3, J4, J5, J6, J8 (7/7) | 19 dari 20 | 95,0% | 15 dari 16 | 93,8% |
+| WB-02 | J1, J2, J3, J4 (4/4) | 16 dari 21 | 76,2% | 11 dari 16 | 68,8% |
+| WB-03 | J1, J2, J3, J5, J6, J7, J8 (7/7) | 22 dari 25 | 88,0% | 19 dari 22 | 86,4% |
+| WB-04 | J1, J3, J4, J7, J8, J10 (6/8) | 24 dari 26 | 92,3% | 14 dari 18 | 77,8% |
+| WB-05 | J1, J2, J3, J6, J7 (5/6) | 17 dari 21 | 81,0% | 11 dari 16 | 68,8% |
+| **Total** | **29 dari 32 jalur dapat dijalankan** | **98 dari 113** | **86,7%** | **70 dari 88** | **79,5%** |
 
-Angka WB-01 belum memuat J3 dan J5 (menunggu konfirmasi), jadi masih bisa naik. Angka ini akan dihitung ulang setelah jalur sisa dijalankan, lalu disalin ke Test Report.
+WB-01, WB-02, dan WB-03 telah mencapai coverage maksimum untuk seluruh jalur yang dapat dijalankan tanpa memanipulasi basis data produksi. Tiga jalur yang belum dijalankan (`WB-04-J2`, `WB-04-J6`, `WB-05-J4`) membutuhkan akun pendaftar baru yang belum pernah memiliki baris di tabel `pengumuman`.
 
 Simpul yang tidak tercakup, dan alasannya:
 

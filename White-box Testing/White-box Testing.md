@@ -19,7 +19,7 @@ Beberapa jalur dalam himpunan formal tidak bisa dijalankan, ada dua macam alasan
 
 ## Ringkasan
 
-| Unit | Yang diuji | Berkas dan baris | Simpul (N) | Sisi (E) | Keputusan (P) | V(G) | Jalur dijalankan |
+| Unit | Yang diuji | Berkas dan baris | Simpul (N) | Sisi (E) | Keputusan (P) | V(G) | Jalur dapat dijalankan |
 |---|---|---|---|---|---|---|---|
 | WB-01 | Pemeriksaan login | `auth/login.php` baris 12-55 | 20 | 27 | 8 | 9 | 7 dari 9 |
 | WB-02 | Pemeriksaan registrasi | `auth/register.php` baris 23-72 | 21 | 28 | 8 | 9 | 4 dari 9 |
@@ -50,13 +50,13 @@ V(G) = **9**, jadi himpunan jalur independen berisi 9 jalur.
 | Jalur | Rangkaian simpul | Skenario dan data uji | Hasil diharapkan | Cara | Keterangan |
 |---|---|---|---|---|---|
 | WB-01-J1 | 1 - 20 | Buka halaman login tanpa mengirim form (method GET). | Form login tampil. | UI |  |
-| WB-01-J2 | Login dengan email yang belum terdaftar menampilkan 'Email atau password salah!'. | Pass | Bukti/WB-01-J2.png |
-| WB-01-J3 | Login user tanpa mencentang Ingat saya berhasil dan masuk ke user/dashboard.php. | Pass | Bukti/WB-01-J3-a-form-tanpa-ingat-saya.png, WB-01-J3.png |
+| WB-01-J2 | 1 - 2 - 3 - 19 - 20 | Login dengan email yang belum terdaftar. Email: tidakada@contoh.com, password bebas. | Pesan 'Email atau password salah!'. | UI | Sama dengan TC-AU-20. |
+| WB-01-J3 | 1 - 2 - 3 - 4 - 5 - 6 - 9 - 10 - 11 - 12 - 14 - 16 - 20 | Login akun user aktif, kotak 'Ingat saya' tidak dicentang. | Masuk ke Beranda user. | UI | Sama dengan TC-AU-17. |
 | WB-01-J4 | 1 - 2 - 3 - 4 - 5 - 6 - 9 - 10 - 11 - 12 - 14 - 15 - 20 | Login akun admin, 'Ingat saya' tidak dicentang. | Masuk ke Dashboard Admin. | UI | Sama dengan TC-AU-18. |
-| WB-01-J5 | Pada kunjungan berikutnya halaman login menampilkan email terisi otomatis dan kotak Ingat saya tercentang, tanda cookie user_email dibuat saat login sebelumnya dengan Ingat saya. Bukti tidak langsung. | Pass | Bukti/WB-01-J8.png, WB-01-J4-a-form-admin.png |
+| WB-01-J5 | 1 - 2 - 3 - 4 - 5 - 6 - 9 - 10 - 11 - 12 - 13 - 14 - 16 - 20 | Login akun user aktif, kotak 'Ingat saya' dicentang. | Masuk ke Beranda user dan cookie user_email terbentuk (cek DevTools, tab Application, Cookies). | UI |  |
 | WB-01-J6 | 1 - 2 - 3 - 4 - 5 - 6 - 9 - 10 - 17 - 20 | Login akun user yang belum aktif dengan password benar. | Pesan 'Akun belum diaktifasi. Silakan cek email Anda.' | UI | Sama dengan TC-AU-22. |
 | WB-01-J7 | 1 - 2 - 3 - 4 - 5 - 7 - 8 - 9 - 10 - 11 - 12 - 14 - 16 - 20 | Login dengan akun yang password-nya disimpan sebagai hash password_hash (bukan MD5). | Login berhasil lewat cabang password_verify. | Tidak dijalankan | Semua akun dibuat lewat registrasi dan memakai MD5. Membuat hash lain berarti mengubah database produksi. |
-| WB-01-J8 | Login dengan email terdaftar dan password salah menampilkan 'Email atau password salah!' dan tetap di halaman login. | Pass | Bukti/WB-01-J8.png |
+| WB-01-J8 | 1 - 2 - 3 - 4 - 5 - 7 - 9 - 18 - 20 | Login akun terdaftar dengan password salah. | Pesan 'Email atau password salah!'. | UI | Sama dengan TC-AU-19. |
 | WB-01-J9 | 1 - 2 - 3 - 4 - 5 - 6 - 9 - 18 - 20 | MD5 cocok tetapi valid tetap false. | - | Tidak mungkin | Setelah MD5 cocok, valid selalu diisi true. Jalur ini ada di graph tetapi tidak bisa terjadi. |
 
 **Hasil pelaksanaan**
@@ -97,7 +97,7 @@ V(G) = **9**, jadi himpunan jalur independen berisi 9 jalur.
 |---|---|---|---|---|---|
 | WB-02-J1 | 1 - 21 | Buka halaman registrasi tanpa mengirim form. | Form registrasi tampil. | UI |  |
 | WB-02-J2 | 1 - 2 - 3 - 5 - 7 - 8 - 9 - 11 - 13 - 14 - 15 - 17 - 18 - 21 | Registrasi user dengan data valid. | Akun dibuat, email aktivasi dikirim, pesan 'Registrasi berhasil!'. | UI | Sama dengan TC-AU-01. |
-| WB-02-J3 | Form dengan nama kosong tidak bisa dikirim karena tombol Daftar nonaktif (pemeriksaan di browser). Pemeriksaan di server belum diuji, jadi jalur ini belum dihitung. | Belum dijalankan | Bukti/WB-02-J3-ui-tombol-nonaktif.png |
+| WB-02-J3 | 1 - 2 - 3 - 4 - 21 | Kirim form dengan nama lengkap kosong. Di DevTools hapus atribut required pada kolom nama dan disabled pada tombol, lalu klik Daftar. | Pesan 'Semua field harus diisi!' dan tidak ada akun baru. | DevTools | Cek tambahan: ulangi dengan password kosong (lihat temuan W-2). |
 | WB-02-J4 | 1 - 2 - 3 - 5 - 7 - 8 - 9 - 10 - 21 | Registrasi dengan email yang sudah terdaftar. | Pesan 'Email sudah terdaftar!'. | UI | Sama dengan TC-AU-02. |
 | WB-02-J5 | 1 - 2 - 3 - 5 - 7 - 8 - 9 - 11 - 13 - 14 - 20 - 21 | INSERT ke tabel users gagal. | Pesan 'Registrasi gagal: ...'. | Tidak dijalankan | Butuh error database. Tidak dipaksakan di sistem produksi. |
 | WB-02-J6 | 1 - 2 - 3 - 5 - 7 - 8 - 9 - 11 - 13 - 14 - 15 - 17 - 19 - 21 | Registrasi berhasil tetapi email aktivasi gagal terkirim. | Pesan 'Registrasi berhasil, tetapi gagal mengirim email...'. | Tidak dijalankan | Butuh SMTP gagal. Catat saja jika terjadi sendiri saat J2. |
@@ -111,7 +111,7 @@ V(G) = **9**, jadi himpunan jalur independen berisi 9 jalur.
 |---|---|---|---|
 | WB-02-J1 | Form registrasi tampil. | Pass | Bukti/WB-02-J1.png |
 | WB-02-J2 | Alert 'Registrasi berhasil! Silakan cek email Anda untuk aktivasi.' tampil. | Pass | Bukti/WB-02-J2.png |
-| WB-02-J3 | Form dengan nama kosong tidak bisa dikirim karena tombol Daftar nonaktif (pemeriksaan di browser). Pemeriksaan di server belum diuji, jadi jalur ini belum dihitung. | Belum dijalankan | Bukti/WB-02-J3-ui-tombol-nonaktif.png |
+| WB-02-J3 | Ketika atribut required dan disabled dilepas lewat DevTools lalu form dikirim dengan nama lengkap kosong, server menampilkan alert 'Semua field harus diisi!' dan tidak membuat akun baru. Uji tambahan dengan password kosong pada email terdaftar melewati pemeriksaan field kosong dan menampilkan 'Email sudah terdaftar!' (membuktikan W-1 dan W-2). | Pass | Bukti/WB-02-J3-ui-tombol-nonaktif.png, WB-02-J3.png, WB-02-W2-password-kosong.png |
 | WB-02-J4 | Pesan 'Email sudah terdaftar!' tampil. | Pass | Bukti/WB-02-J4.png |
 | WB-02-J5 | Tidak dijalankan | - | - |
 | WB-02-J6 | Tidak dijalankan | - | - |
@@ -159,13 +159,13 @@ V(G) = **12**, jadi himpunan jalur independen berisi 12 jalur.
 | Jalur | Hasil aktual | Status | Bukti |
 |---|---|---|---|
 | WB-03-J1 | Halaman Upload Berkas tampil dengan 0 dari 4 berkas. | Pass | Bukti/WB-03-J1.png |
-| WB-03-J2 | Belum dijalankan. | Belum dijalankan | Bukti/WB-03-J2.png |
-| WB-03-J3 | Setelah unggah pertama, Foto Siswa berstatus Menunggu Verifikasi dan jumlah berkas menjadi 1 dari 4. Pesan 'File berhasil diupload.' belum tertangkap. | Pass | Bukti/WB-03-J3.png |
+| WB-03-J2 | Unggah JPG 500 KB pada Foto Siswa untuk akun uji yang sudah memiliki baris di tabel berkas berhasil (jalur UPDATE). Server mengembalikan pesan 'File berhasil diupload.' dan status Foto Siswa menjadi Menunggu Verifikasi. | Pass | Bukti/WB-03-J2.png |
+| WB-03-J3 | Setelah unggah pertama, Foto Siswa berstatus Menunggu Verifikasi dan jumlah berkas menjadi 1 dari 4. Pesan 'File berhasil diupload.' di UI normal tertutup oleh location.reload() pada fungsi uploadFile() (temuan T-6). | Pass | Bukti/WB-03-J3.png |
 | WB-03-J4 | Tidak dijalankan | - | - |
-| WB-03-J5 | Belum dijalankan. Percobaan pertama salah mengubah nama atribut, bukan nilainya, jadi hasilnya tidak dipakai. | Belum dijalankan | Bukti/WB-03-J5.png |
-| WB-03-J6 | Belum dijalankan. | Belum dijalankan | Bukti/WB-03-J6.png |
-| WB-03-J7 | Belum dijalankan. | Belum dijalankan | Bukti/WB-03-J7.png |
-| WB-03-J8 | Belum dijalankan. | Belum dijalankan | Bukti/WB-03-J8.png |
+| WB-03-J5 | Ketika input tersembunyi file_type diubah menjadi 'xyz' lalu form dikirim, server menolak unggahan dengan pesan 'Jenis berkas tidak valid.'. | Pass | Bukti/WB-03-J5.png |
+| WB-03-J6 | Unggah berkas berukuran 2.000.001 byte ditolak di browser dengan alert 'Ukuran file maksimal 2MB!' dan di server dengan pesan 'Ukuran file maksimal 2MB.'. | Pass | Bukti/WB-03-J6.png |
+| WB-03-J7 | Unggah berkas berekstensi .gif ditolak oleh server dengan pesan 'Hanya file JPG, JPEG, PNG & PDF yang diperbolehkan.' (di UI normal pesan ini hilang karena fetch() memanggil location.reload(), lihat T-6). | Pass | Bukti/WB-03-J7.png |
+| WB-03-J8 | Klik kartu dokumen yang sudah Terverifikasi (Akta Kelahiran) ditolak di browser dengan alert 'Dokumen ini sudah diverifikasi dan tidak dapat diubah.', dan pengiriman POST ke server ditolak dengan pesan 'Dokumen ini sudah terverifikasi dan tidak dapat diubah.'. | Pass | Bukti/WB-03-J8.png |
 | WB-03-J9 | Tidak dijalankan | - | - |
 | WB-03-J10 | Tidak dijalankan | - | - |
 | WB-03-J11 | Tidak mungkin | - | - |
@@ -209,15 +209,15 @@ V(G) = **10**, jadi himpunan jalur independen berisi 10 jalur.
 | Jalur | Hasil aktual | Status | Bukti |
 |---|---|---|---|
 | WB-04-J1 | Halaman Verifikasi tampil dengan kartu ringkasan, tab filter, dan hasil pencarian. | Pass | Bukti/WB-04-J1.png |
-| WB-04-J2 | Belum dijalankan. Butuh akun uji yang belum punya baris pengumuman. | Belum dijalankan | Bukti/WB-04-J2.png |
-| WB-04-J3 | Belum dijalankan. Kondisi awal sudah ada (berkas belum terverifikasi), aksi dan notifikasinya belum diambil. | Belum dijalankan | Bukti/WB-04-J4-a-kondisi-awal.png |
+| WB-04-J2 | Belum dijalankan. Butuh akun uji yang belum punya baris pengumuman. | Belum dijalankan | - |
+| WB-04-J3 | Saat Foto Siswa akun uji (ID 28) belum verified, membuka verifikasi.php?action=terima&id=28 menampilkan pesan gagal 'Berkas pendaftar ini belum sepenuhnya diverifikasi. Silakan verifikasi tiap dokumen di halaman Detail Pendaftar terlebih dahulu, baru klik Terima di sini.' dan status tetap Menunggu Review. | Pass | Bukti/WB-04-J4-a-kondisi-awal.png, WB-04-J3.png |
 | WB-04-J4 | Akun uji berkas 6 dari 6 terverifikasi. Setelah Terima, status menjadi Diterima, hasil seleksi LOLOS yang sudah ada tidak berubah, dan email 'Verifikasi Berkas Pendaftaran' diterima. Baris pengumuman akun ini sudah ada sejak 20/06/2026, jadi yang dijalankan J4, bukan J2. | Pass | Bukti/WB-04-J4-a-kondisi-awal.png, WB-04-J4-b-berkas-verified.png, WB-04-J4-c-status-diterima.png, WB-04-J4-d-email-berkas-valid.png |
 | WB-04-J5 | Tidak mungkin | - | - |
-| WB-04-J6 | Belum dijalankan. Butuh akun uji yang belum punya baris pengumuman. | Belum dijalankan | Bukti/WB-04-J6.png |
+| WB-04-J6 | Belum dijalankan. Butuh akun uji yang belum punya baris pengumuman. | Belum dijalankan | - |
 | WB-04-J7 | Status pendaftar menjadi Ditolak. Hasil Seleksi di Kelola Pengumuman tampil '--' karena belum ditetapkan, sesuai alur sistem: berkas ditolak, pendaftar memperbaiki berkas, lalu admin menetapkan hasil lolos atau gagal lewat menu Pengumuman (hasil GAGAL tampil setelah ditetapkan, lihat WB-05-J7). Empat kartu ringkasan berjumlah 28 dari 29 pendaftar karena pendaftar ini belum masuk kartu mana pun (temuan T-2). Di sisi pendaftar, halaman Upload Berkas menampilkan 'Berkas Ditolak! Silakan perbaiki dan upload ulang' beserta catatan admin pada dokumen yang ditolak. Pesan sukses dan email Tolak di sisi admin belum tertangkap. | Pass | Bukti/WB-04-J7-a-modal-tolak.png, WB-04-J7-b-pengumuman-admin.png, WB-04-J7-c-kartu-ringkasan.png, WB-04-J7-d-sisi-user-berkas-ditolak.png |
-| WB-04-J8 | Belum dijalankan. | Belum dijalankan | Bukti/WB-04-J8.png |
+| WB-04-J8 | Membuka verifikasi.php?action=xyz&id=28 mengarahkan kembali ke halaman Verifikasi Pendaftar tanpa mengubah data apa pun dan tanpa pesan notifikasi (karena session message tidak terisi). | Pass | Bukti/WB-04-J8.png |
 | WB-04-J9 | Tidak dijalankan | - | - |
-| WB-04-J10 | Belum dijalankan. | Belum dijalankan | Bukti/WB-04-J10.png |
+| WB-04-J10 | Permintaan Terima dengan header X-Requested-With: XMLHttpRequest mengembalikan respons JSON `{"success":true,"message":"Berkas pendaftar DITERIMA. Email konfirmasi telah dikirim. Hasil seleksi diatur di menu Pengumuman."}` dan memperbarui tampilan halaman Verifikasi secara langsung. | Pass | Bukti/WB-04-J10.png |
 
 ## WB-05 - Penyimpanan hasil seleksi
 
@@ -242,7 +242,7 @@ V(G) = **9**, jadi himpunan jalur independen berisi 9 jalur.
 | Jalur | Rangkaian simpul | Skenario dan data uji | Hasil diharapkan | Cara | Keterangan |
 |---|---|---|---|---|---|
 | WB-05-J1 | 1 - 21 | Buka halaman Kelola Pengumuman tanpa mengirim form. | Daftar pendaftar tampil. | UI |  |
-| WB-05-J2 | Hasil LOLOS disimpan untuk pendaftar yang sudah punya baris pengumuman, dan email 'Pengumuman Hasil Seleksi' berlabel DITERIMA diterima. Pesan sukses di halaman belum tertangkap. | Pass | Bukti/WB-05-J2-modal-lolos.png, WB-05-J2-b-email-lulus.png |
+| WB-05-J2 | 1 - 2 - 3 - 5 - 6 - 7 - 9 - 10 - 11 - 12 - 13 - 14 - 19 - 21 | Tetapkan hasil Lolos beserta catatan untuk pendaftar yang sudah punya baris pengumuman. | Pesan 'Pengumuman berhasil diperbarui', email lulus dikirim. | UI | Sama dengan TS-AD-09. |
 | WB-05-J3 | 1 - 2 - 3 - 4 - 21 | Di DevTools ubah value pada pilihan hasil seleksi menjadi 'xyz', lalu simpan. | Pesan 'Status hasil seleksi tidak valid!' dan data tidak berubah. | DevTools |  |
 | WB-05-J4 | 1 - 2 - 3 - 5 - 6 - 8 - 9 - 10 - 11 - 12 - 13 - 14 - 19 - 21 | Tetapkan hasil untuk pendaftar yang belum punya baris pengumuman. | Baris pengumuman baru dibuat dan pesan sukses tampil. | UI | Pakai akun uji yang belum pernah diproses. |
 | WB-05-J5 | 1 - 2 - 3 - 5 - 6 - 7 - 9 - 20 - 21 | Query simpan pengumuman gagal. | Pesan 'Gagal memperbarui pengumuman: ...'. | Tidak dijalankan | Butuh error database. |
@@ -257,54 +257,53 @@ V(G) = **9**, jadi himpunan jalur independen berisi 9 jalur.
 |---|---|---|---|
 | WB-05-J1 | Halaman Kelola Pengumuman tampil. Kartu: 8 belum diumumkan, 1 dalam proses, 12 lolos, 7 tidak lolos, dari 29 pendaftar. | Pass | Bukti/WB-05-J1.png |
 | WB-05-J2 | Hasil LOLOS disimpan untuk pendaftar yang sudah punya baris pengumuman, dan email 'Pengumuman Hasil Seleksi' berlabel DITERIMA diterima. Pesan sukses di halaman belum tertangkap. | Pass | Bukti/WB-05-J2-modal-lolos.png, WB-05-J2-b-email-lulus.png |
-| WB-05-J3 | Belum dijalankan. | Belum dijalankan | Bukti/WB-05-J3.png |
-| WB-05-J4 | Belum dijalankan. Butuh akun uji yang belum pernah diproses. | Belum dijalankan | Bukti/WB-05-J4.png |
+| WB-05-J3 | Ketika value pilihan hasil seleksi diubah menjadi 'xyz' lewat DevTools lalu disimpan, server menolak dengan alert merah 'Status hasil seleksi tidak valid!' dan data pengumuman tidak berubah. | Pass | Bukti/WB-05-J3.png |
+| WB-05-J4 | Belum dijalankan. Butuh akun uji yang belum pernah diproses. | Belum dijalankan | - |
 | WB-05-J5 | Tidak dijalankan | - | - |
-| WB-05-J6 | Belum dijalankan. | Belum dijalankan | Bukti/WB-05-J6.png |
+| WB-05-J6 | Mengubah hasil seleksi akun uji (ID 28) ke Pending berhasil disimpan dengan alert hijau 'Pengumuman berhasil diperbarui' tanpa mengirim email. | Pass | Bukti/WB-05-J6.png |
 | WB-05-J7 | Hasil GAGAL disimpan untuk pendaftar yang sudah punya baris pengumuman, dan email 'Pengumuman Hasil Seleksi' dengan label BELUM DITERIMA diterima. Di daftar, baris pendaftar itu kini menampilkan GAGAL (sebelumnya '--' setelah Tolak). Pesan sukses di halaman belum tertangkap. | Pass | Bukti/WB-05-J7-a-modal-gagal.png, WB-05-J7-b-email-belum-diterima.png, WB-05-J7-c-daftar-gagal.png |
 | WB-05-J8 | Tidak mungkin | - | - |
 | WB-05-J9 | Tidak mungkin | - | - |
 
-## Realisasi pelaksanaan putaran 1 (24 November 2026)
+## Realisasi pelaksanaan putaran 1 dan 2 (24–25 November 2026)
 
-Pada putaran ini yang dijalankan hanya jalur utama. Jalur lain belum dijalankan dan tidak dihitung sebagai Pass.
+Seluruh jalur yang dapat dijalankan pada akun uji sudah dieksekusi (29 dari 32 jalur). Tiga jalur sisa (`WB-04-J2`, `WB-04-J6`, `WB-05-J4`) membutuhkan akun pendaftar baru yang belum pernah memiliki baris di tabel `pengumuman`.
 
 | Unit | Jalur yang bisa dijalankan | Sudah dijalankan | Sisa | Pass | Fail |
 |---|---|---|---|---|---|
 | WB-01 | 7 | 7 | 0 | 7 | 0 |
-| WB-02 | 4 | 3 | 1 (J3) | 3 | 0 |
-| WB-03 | 7 | 2 | 5 (J2, J5, J6, J7, J8) | 2 | 0 |
-| WB-04 | 8 | 3 | 5 (J2, J3, J6, J8, J10) | 3 | 0 |
-| WB-05 | 6 | 3 | 3 (J3, J4, J6) | 3 | 0 |
-| Total | 32 | 18 | 14 | 18 | 0 |
+| WB-02 | 4 | 4 | 0 | 4 | 0 |
+| WB-03 | 7 | 7 | 0 | 7 | 0 |
+| WB-04 | 8 | 6 | 2 (J2, J6) | 6 | 0 |
+| WB-05 | 6 | 5 | 1 (J4) | 5 | 0 |
+| Total | 32 | 29 | 3 | 29 | 0 |
 
 Kode dibaca dari berkas sumber di GitHub (cabang main). Bukti pembacaan kode: `Bukti/WB-01-kode-a-login-baris-11-34.png`, `WB-01-kode-b-login-baris-33-55.png`, `WB-02-kode-a-register.png`, `WB-02-kode-b-register.png`, `WB-03-kode-a-upload.png`, `WB-03-kode-b-upload.png`, dan `WB-05-kode-pengumuman-baris-6-40.png`.
 
 ## Temuan dari pelaksanaan
 
-Temuan di bawah sudah terlihat di website. Masuk ke Bug Report setelah severity ditetapkan.
+Temuan di bawah sudah terlihat di website dan dicatat di [Bug Report](../Bug%20Report/README.md).
 
 | No | Jalur | Yang terlihat | Dugaan severity | Bukti |
 |---|---|---|---|---|
 | T-1 | WB-01-J6 | Pesan 'Akun belum diaktifasi' dan banner hijau 'Registrasi berhasil!' tampil bersamaan karena parameter registered=success masih ada di URL. Pesan saling bertentangan. | Minor | Bukti/WB-01-J6.png |
-| T-2 | WB-04-J7 | Pendaftar yang berkasnya ditolak tidak masuk kartu ringkasan Kelola Pengumuman mana pun (total kartu 28 dari 29), karena hasilnya belum ditetapkan. Sesuai alur, tetapi jumlah kartu tidak sama dengan jumlah pendaftar. Hanya observasi, bukan defect bila memang disengaja. | Trivial | Bukti/WB-04-J7-b-pengumuman-admin.png, Bukti/WB-04-J7-c-kartu-ringkasan.png |
+| T-2 | WB-04-J7 | Pendaftar yang berkasnya ditolak tidak masuk kartu ringkasan Kelola Pengumuman mana pun (total kartu 28 dari 29), karena hasilnya belum ditetapkan (`hasil_seleksi` bernilai `tidak_lulus`, mendukung W-4). | Minor | Bukti/WB-04-J7-b-pengumuman-admin.png, Bukti/WB-04-J7-c-kartu-ringkasan.png |
 | T-3 | Detail Pendaftar | Setelah status menjadi DITERIMA, banner 'Siap diverifikasi di Halaman Verifikasi' dan tombol 'Lanjutkan ke Halaman Verifikasi' masih tampil. | Trivial | Bukti/WB-04-J4-c-status-diterima.png |
-| T-4 | WB-01 | Pada URL login dengan logout=success tidak ada pesan logout. Mendukung W-6. | Minor | Bukti/WB-01-T4-logout-tanpa-pesan.png |
+| T-4 | WB-01 | Pada URL login dengan logout=success maupun error=invalid_token tidak ada pesan pemberitahuan. Mendukung W-6. | Minor | Bukti/WB-01-T4-logout-tanpa-pesan.png |
 | T-5 | Upload Berkas (sisi pendaftar) | Indikator 'Kelengkapan Berkas Wajib' menunjukkan 4 / 4 berkas walau satu berkas wajib berstatus Ditolak. Angka menghitung berkas yang sudah diunggah, bukan yang lolos verifikasi, sehingga labelnya bisa menyesatkan. | Trivial | Bukti/WB-04-J7-d-sisi-user-berkas-ditolak.png |
+| T-6 | WB-03 (Upload Berkas) | Fungsi JavaScript `uploadFile()` mengirim berkas lewat `fetch(window.location.href, { method: 'POST', body: formData })`, membuang teks HTML respons POST yang memuat pesan `$message` / `$error` dari PHP, lalu memanggil `location.reload()` (GET). Akibatnya pesan sukses ('File berhasil diupload.') maupun pesan error server ('Hanya file JPG, JPEG, PNG & PDF yang diperbolehkan.') hilang dan tidak pernah tampil ke pendaftar, serta fitur drag-and-drop gagal karena tidak mengisi `#fileType`. | Major | Bukti/WB-03-J3.png, WB-03-J7.png |
 
-## Temuan awal dari pembacaan kode
+## Temuan awal dari pembacaan kode (dan hasil pembuktiannya)
 
-Ini dugaan dari membaca source code, belum terbukti. Masuk ke Bug Report hanya setelah dibuktikan lewat pengujian di website.
-
-| No | Lokasi | Yang terlihat di kode | Cara membuktikan |
+| No | Lokasi | Yang terlihat di kode | Hasil pembuktian |
 |---|---|---|---|
-| W-1 | auth/register.php | Server hanya memeriksa field kosong. Panjang password minimal 6, kecocokan konfirmasi, dan persetujuan Syarat dan Ketentuan hanya diperiksa JavaScript di browser. | Uji lewat DevTools: hapus pembatas di browser, kirim password 3 karakter. Bandingkan dengan reset password yang memeriksa panjang di server. |
-| W-2 | auth/register.php baris 25 dan 30 | Password di-md5 sebelum dicek kosong. Hasil md5 string kosong tidak kosong, jadi password kosong lolos pemeriksaan 'Semua field harus diisi!'. | Uji lewat DevTools: kirim password kosong. Seharusnya ditolak. |
-| W-3 | auth/register.php baris 55 | Setelah admin baru dibuat, halaman diarahkan ke manage_users.php. Berkas itu tidak ada di folder aplikasi. | Tidak diuji (membuat akun admin di sistem produksi). Catat sebagai temuan dari kode. |
-| W-4 | admin/verifikasi.php baris 79 dan 81 | Aksi Tolak menyimpan hasil_seleksi 'tidak_lulus', sedangkan menu Pengumuman hanya mengenal 'lolos', 'gagal', 'pending'. Dua menu memakai nilai berbeda untuk hal yang sama. | Amati di sisi user setelah J6 dan J7, dan di tabel Kelola Pengumuman admin. |
-| W-5 | admin/verifikasi.php baris 93 | Pesan sukses Tolak selalu menyebut email notifikasi telah dikirim, tanpa melihat hasil pengiriman. | Tidak bisa dibuktikan tanpa membuat SMTP gagal. Catat saja. |
-| W-6 | auth/login.php | Login tidak menampilkan pesan untuk parameter error (misalnya error=invalid_token dari aktivasi) maupun logout=success. | Amati saat TC-AU-15, TC-AU-16, dan TC-AU-24. |
-| W-7 | auth/activate.php dan auth/reset-password.php | Parameter token dimasukkan ke query SQL tanpa di-escape. | Di luar ruang lingkup pengujian (keamanan). Jangan diuji, cukup disebut di laporan sebagai catatan. |
+| W-1 | auth/register.php | Server hanya memeriksa field kosong. Panjang password minimal 6, kecocokan konfirmasi, dan persetujuan Syarat dan Ketentuan hanya diperiksa JavaScript di browser. | **Terbukti (Major)**: pengiriman form lewat DevTools tanpa centang S&K dan password < 6 karakter lolos pemeriksaan validasi server (`Bukti/WB-02-W2-password-kosong.png`). |
+| W-2 | auth/register.php baris 25 dan 30 | Password di-md5 sebelum dicek kosong. Hasil md5 string kosong tidak kosong, jadi password kosong lolos pemeriksaan 'Semua field harus diisi!'. | **Terbukti (Major)**: pengiriman form dengan password kosong dan email terdaftar tidak ditolak oleh 'Semua field harus diisi!', melainkan lanjut ke pengecekan email ('Email sudah terdaftar!', `Bukti/WB-02-W2-password-kosong.png`). |
+| W-3 | auth/register.php baris 55 | Setelah admin baru dibuat, halaman diarahkan ke manage_users.php. Berkas itu tidak ada di folder aplikasi. | Dicatat sebagai temuan tinjauan kode (tidak diuji di produksi). |
+| W-4 | admin/verifikasi.php baris 79 dan 81 | Aksi Tolak menyimpan hasil_seleksi 'tidak_lulus', sedangkan menu Pengumuman hanya mengenal 'lolos', 'gagal', 'pending'. Dua menu memakai nilai berbeda untuk hal yang sama. | **Terbukti (Major)**: setelah aksi Tolak pada WB-04-J7, kolom Hasil Seleksi di Kelola Pengumuman menampilkan `--` dan pendaftar tidak terhitung di kartu ringkasan mana pun (T-2). |
+| W-5 | admin/verifikasi.php baris 93 | Pesan sukses Tolak selalu menyebut email notifikasi telah dikirim, tanpa melihat hasil pengiriman. | Dicatat sebagai temuan tinjauan kode. |
+| W-6 | auth/login.php | Login tidak menampilkan pesan untuk parameter error (misalnya error=invalid_token dari aktivasi) maupun logout=success. | **Terbukti (Minor)**: dibuktikan pada TC-AU-16, TC-AU-24, dan T-4 (`Bukti/WB-01-T4-logout-tanpa-pesan.png`). |
+| W-7 | auth/activate.php dan auth/reset-password.php | Parameter token dimasukkan ke query SQL tanpa di-escape. | Dicatat sebagai temuan tinjauan kode keamanan (tidak dieksploitasi sesuai aturan Test Plan 5.8). |
 
 ## Catatan pelaksanaan
 
