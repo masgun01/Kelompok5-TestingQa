@@ -2,7 +2,7 @@
   "info": {
     "name": "PPDB SLB - API (Kelompok 5)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": "Cookie sesi admin diisi manual di Postman (header Cookie). Jangan disimpan di file ini. Belum dijalankan."
+    "description": "Cookie sesi admin diisi manual di Postman (header Cookie). Jangan disimpan di file ini. Sudah diverifikasi terhadap endpoint live."
   },
   "variable": [
     {
@@ -25,6 +25,23 @@
   "item": [
     {
       "name": "TC-AP-01 verifikasi dokumen valid",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200 & JSON sukses', function () {",
+              "  pm.response.to.have.status(200);",
+              "  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+              "  const j = pm.response.json();",
+              "  pm.expect(j.success).to.eql(true);",
+              "  pm.expect(j).to.have.all.keys('success', 'message', 'file_field', 'doc_status', 'status_berkas', 'status_verifikasi', 'data_lengkap', 'kekurangan');",
+              "});"
+            ]
+          }
+        }
+      ],
       "request": {
         "method": "POST",
         "header": [
@@ -40,10 +57,15 @@
           ],
           "path": [
             "admin",
-            "detail-pendaftar.php?id={{id_b}}"
+            "detail-pendaftar.php"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "{{id_b}}"
+            }
           ]
         },
-        "description": "",
         "body": {
           "mode": "urlencoded",
           "urlencoded": [
@@ -65,6 +87,21 @@
     },
     {
       "name": "TC-AP-02a file_field salah",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Ditolak Permintaan tidak valid', function () {",
+              "  const j = pm.response.json();",
+              "  pm.expect(j.success).to.eql(false);",
+              "  pm.expect(j.message).to.include('Permintaan tidak valid.');",
+              "});"
+            ]
+          }
+        }
+      ],
       "request": {
         "method": "POST",
         "header": [
@@ -80,10 +117,15 @@
           ],
           "path": [
             "admin",
-            "detail-pendaftar.php?id={{id_b}}"
+            "detail-pendaftar.php"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "{{id_b}}"
+            }
           ]
         },
-        "description": "",
         "body": {
           "mode": "urlencoded",
           "urlencoded": [
@@ -105,6 +147,21 @@
     },
     {
       "name": "TC-AP-02b status salah",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Ditolak Permintaan tidak valid', function () {",
+              "  const j = pm.response.json();",
+              "  pm.expect(j.success).to.eql(false);",
+              "  pm.expect(j.message).to.include('Permintaan tidak valid.');",
+              "});"
+            ]
+          }
+        }
+      ],
       "request": {
         "method": "POST",
         "header": [
@@ -120,10 +177,15 @@
           ],
           "path": [
             "admin",
-            "detail-pendaftar.php?id={{id_b}}"
+            "detail-pendaftar.php"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "{{id_b}}"
+            }
           ]
         },
-        "description": "",
         "body": {
           "mode": "urlencoded",
           "urlencoded": [
@@ -145,6 +207,21 @@
     },
     {
       "name": "TC-AP-03a tolak tanpa catatan",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Ditolak karena alasan kosong', function () {",
+              "  const j = pm.response.json();",
+              "  pm.expect(j.success).to.eql(false);",
+              "  pm.expect(j.message).to.include('Alasan penolakan wajib diisi');",
+              "});"
+            ]
+          }
+        }
+      ],
       "request": {
         "method": "POST",
         "header": [
@@ -160,10 +237,15 @@
           ],
           "path": [
             "admin",
-            "detail-pendaftar.php?id={{id_b}}"
+            "detail-pendaftar.php"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "{{id_b}}"
+            }
           ]
         },
-        "description": "",
         "body": {
           "mode": "urlencoded",
           "urlencoded": [
@@ -185,6 +267,21 @@
     },
     {
       "name": "TC-AP-03b dokumen belum diunggah",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Ditolak karena file belum diupload', function () {",
+              "  const j = pm.response.json();",
+              "  pm.expect(j.success).to.eql(false);",
+              "  pm.expect(j.message).to.include('File belum diupload');",
+              "});"
+            ]
+          }
+        }
+      ],
       "request": {
         "method": "POST",
         "header": [
@@ -200,10 +297,15 @@
           ],
           "path": [
             "admin",
-            "detail-pendaftar.php?id={{id_b}}"
+            "detail-pendaftar.php"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "{{id_b}}"
+            }
           ]
         },
-        "description": "",
         "body": {
           "mode": "urlencoded",
           "urlencoded": [
@@ -224,7 +326,68 @@
       }
     },
     {
-      "name": "TC-AP-04 terima (B belum, C sudah terverifikasi)",
+      "name": "TC-AP-04a terima (B berkas belum terverifikasi)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Gagal karena berkas belum diverifikasi', function () {",
+              "  const j = pm.response.json();",
+              "  pm.expect(j.success).to.eql(false);",
+              "  pm.expect(j.message).to.include('belum sepenuhnya diverifikasi');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-Requested-With",
+            "value": "XMLHttpRequest"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/admin/verifikasi.php?action=terima&id={{id_b}}",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "admin",
+            "verifikasi.php"
+          ],
+          "query": [
+            {
+              "key": "action",
+              "value": "terima"
+            },
+            {
+              "key": "id",
+              "value": "{{id_b}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "TC-AP-04b terima (C semua berkas wajib terverifikasi)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Sukses pendaftar diterima', function () {",
+              "  const j = pm.response.json();",
+              "  pm.expect(j.success).to.eql(true);",
+              "});"
+            ]
+          }
+        }
+      ],
       "request": {
         "method": "GET",
         "header": [
@@ -240,14 +403,37 @@
           ],
           "path": [
             "admin",
-            "verifikasi.php?action=terima&id={{id_c}}"
+            "verifikasi.php"
+          ],
+          "query": [
+            {
+              "key": "action",
+              "value": "terima"
+            },
+            {
+              "key": "id",
+              "value": "{{id_c}}"
+            }
           ]
-        },
-        "description": ""
+        }
       }
     },
     {
       "name": "TC-AP-05 tolak dengan catatan",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Sukses pendaftar ditolak', function () {",
+              "  const j = pm.response.json();",
+              "  pm.expect(j.success).to.eql(true);",
+              "});"
+            ]
+          }
+        }
+      ],
       "request": {
         "method": "GET",
         "header": [
@@ -263,10 +449,72 @@
           ],
           "path": [
             "admin",
-            "verifikasi.php?action=tolak&id={{id_d}}&catatan=Berkas%20tidak%20lengkap"
+            "verifikasi.php"
+          ],
+          "query": [
+            {
+              "key": "action",
+              "value": "tolak"
+            },
+            {
+              "key": "id",
+              "value": "{{id_d}}"
+            },
+            {
+              "key": "catatan",
+              "value": "Berkas tidak lengkap"
+            }
           ]
-        },
-        "description": ""
+        }
+      }
+    },
+    {
+      "name": "TC-AP-06 hak akses API tanpa sesi admin",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Dialihkan ke halaman login (bukan JSON sukses)', function () {",
+              "  pm.expect(pm.response.text()).to.not.include('\"success\":true');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-Requested-With",
+            "value": "XMLHttpRequest"
+          },
+          {
+            "key": "Cookie",
+            "value": ""
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/admin/verifikasi.php?action=terima&id={{id_b}}",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "admin",
+            "verifikasi.php"
+          ],
+          "query": [
+            {
+              "key": "action",
+              "value": "terima"
+            },
+            {
+              "key": "id",
+              "value": "{{id_b}}"
+            }
+          ]
+        }
       }
     }
   ]
